@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>cours1.html</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+</head>
+
+<body>
+
+<h1 id="cours-1-programation-dlx">Cours 1: Programation DLX</h1>
+<p>prof: Thierry Grandpierre</p>
+<h2 id="architecture-loadstore">Architecture Load/Store</h2>
+<p>Un ordinateur “minimal” a besoin:</p>
+<ul>
+<li>D’un Processeur</li>
+<li>D’une RAM</li>
+<li>d’une horloge</li>
+<li>d’une ROM/Flash</li>
+</ul>
+<p>L’architecture RISC rend obligatoire de stocker les données à modifier en registre, ce qui fait perdre quelques cycles d’horloges, mais rend ensuite les opérations sur ces valeurs en registres très rapide. C’est l’architecture Load/Store.</p>
+<p>L’unité responsable des opérations logiques et arithmétiques est l’ALU (Arithmetic and Logic Unit) L’ALU a deux entrées de données, une de contrôle (pour le choix de l’opération) et une sortie.</p>
+<p><img src="alu.jpg" /></p>
+<h2 id="les-3-formats-dinstruction-i-r-j-taille-32bits">Les 3 formats d’instruction: I, R, J (taille 32bits)</h2>
+<h3 id="rappels-des-instructions-dlx">Rappels des instructions DLX</h3>
+<ol type="1">
+<li>Data Transfert - Accès mémoire</li>
+<li>Arithmétique et logique</li>
+<li>Control</li>
+<li>Floating Point</li>
+</ol>
+<p>Les opérations d’accès mémoire et de transferts de données sont par exemple LOAD et STORE</p>
+<p>Les opérations Arithmétiques et logiques sont celles relevant de L’ALU</p>
+<p>Les opérations de contrôle sont celles permettant de modifier la ligne du code pointée, comme dans un GOTO, un IF …</p>
+<p>Les opérations sur les flottants peuvent être décomposées en plusieures opérations sur les entiers, ce qui les rend plus lentes à traîter. Elles relève d’une unitée FPU (Float Point Unit) ou de l’ALU s’il n’y en a pas.</p>
+<h2 id="registres-dusage-général">32 registres d’usage général</h2>
+<p>R0 vaut toujours 0 (ce qui permet de toujours avoir un 0 sous la main)</p>
+
+</body>
+</html>
