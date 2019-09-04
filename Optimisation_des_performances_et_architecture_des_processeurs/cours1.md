@@ -25,10 +25,10 @@ L'ALU a deux entrées de données, une de contrôle (pour le choix de l'opérati
 
 ### Rappels des instructions DLX
 
-1. Data Transfert - Accès mémoire
-2. Arithmétique et logique
-3. Control
-4. Floating Point
+1. I: Data Transfert - Accès mémoire
+2. R: Arithmétique et logique
+3. J: Control
+4. (bonus) Floating Point
 
 Les opérations d'accès mémoire et de transferts de données sont par exemple LOAD et STORE
 
@@ -38,6 +38,38 @@ Les opérations de contrôle sont celles permettant de modifier la ligne du code
 
 Les opérations sur les flottants peuvent être décomposées en plusieures opérations sur les entiers, ce qui les rend plus lentes à traîter.
 Elles relève d'une unitée FPU (Float Point Unit) ou de l'ALU s'il n'y en a pas.
+
+
+
+Toutes les instructions font 32 bits dans un processeur RISC:
+
+NB: les GPRs sont les sources (les valeurs d'entrées) et le dGPR est le registre de sortie
+
+### I-Format:
+
+| OpCode | sGPR   | dGPR   | immediat |
+|:------:|:------:|:------:|:--------:|
+| 6 bits | 5 bits | 5 bits | 16 bits  |
+
+ex: lw R1, 16(R0) => |100011|00000|00001|0000000000010000|
+
+
+### R-Format :
+
+|000000|s1GPR|s2GPR|dGPR|00000|OpCode|
+|:----:|:----:|:----:|:----:|:----:|:----:|
+|6 bits|5 bits|5 bits|5 bits|5 bits|6 bits|
+
+ex: ADD R1, R2, R3 => |000000|00010|00011|00001|00000|000010|
+
+### J-Format :
+
+|OpCode|Adresse|
+|:--:|:--:|
+|6 bits| 26 bits|
+
+ex: J +1024 => |111000|00000000000000100000000000|
+
 
 ## 32 registres d'usage général
 

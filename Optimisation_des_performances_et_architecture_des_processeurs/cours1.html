@@ -29,15 +29,77 @@
 <h2 id="les-3-formats-dinstruction-i-r-j-taille-32bits">Les 3 formats d’instruction: I, R, J (taille 32bits)</h2>
 <h3 id="rappels-des-instructions-dlx">Rappels des instructions DLX</h3>
 <ol type="1">
-<li>Data Transfert - Accès mémoire</li>
-<li>Arithmétique et logique</li>
-<li>Control</li>
-<li>Floating Point</li>
+<li>I: Data Transfert - Accès mémoire</li>
+<li>R: Arithmétique et logique</li>
+<li>J: Control</li>
+<li>(bonus) Floating Point</li>
 </ol>
 <p>Les opérations d’accès mémoire et de transferts de données sont par exemple LOAD et STORE</p>
 <p>Les opérations Arithmétiques et logiques sont celles relevant de L’ALU</p>
 <p>Les opérations de contrôle sont celles permettant de modifier la ligne du code pointée, comme dans un GOTO, un IF …</p>
 <p>Les opérations sur les flottants peuvent être décomposées en plusieures opérations sur les entiers, ce qui les rend plus lentes à traîter. Elles relève d’une unitée FPU (Float Point Unit) ou de l’ALU s’il n’y en a pas.</p>
+<p>Toutes les instructions font 32 bits dans un processeur RISC:</p>
+<p>NB: les GPRs sont les sources (les valeurs d’entrées) et le dGPR est le registre de sortie</p>
+<h3 id="i-format">I-Format:</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">OpCode</th>
+<th style="text-align: center;">sGPR</th>
+<th style="text-align: center;">dGPR</th>
+<th style="text-align: center;">immediat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">6 bits</td>
+<td style="text-align: center;">5 bits</td>
+<td style="text-align: center;">5 bits</td>
+<td style="text-align: center;">16 bits</td>
+</tr>
+</tbody>
+</table>
+<p>ex: lw R1, 16(R0) =&gt; |100011|00000|00001|0000000000010000|</p>
+<h3 id="r-format">R-Format :</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">000000</th>
+<th style="text-align: center;">s1GPR</th>
+<th style="text-align: center;">s2GPR</th>
+<th style="text-align: center;">dGPR</th>
+<th style="text-align: center;">00000</th>
+<th style="text-align: center;">OpCode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">6 bits</td>
+<td style="text-align: center;">5 bits</td>
+<td style="text-align: center;">5 bits</td>
+<td style="text-align: center;">5 bits</td>
+<td style="text-align: center;">5 bits</td>
+<td style="text-align: center;">6 bits</td>
+</tr>
+</tbody>
+</table>
+<p>ex: ADD R1, R2, R3 =&gt; |000000|00010|00011|00001|00000|000010|</p>
+<h3 id="j-format">J-Format :</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">OpCode</th>
+<th style="text-align: center;">Adresse</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">6 bits</td>
+<td style="text-align: center;">26 bits</td>
+</tr>
+</tbody>
+</table>
+<p>ex: J +1024 =&gt; |111000|00000000000000100000000000|</p>
 <h2 id="registres-dusage-général">32 registres d’usage général</h2>
 <p>R0 vaut toujours 0 (ce qui permet de toujours avoir un 0 sous la main)</p>
 
