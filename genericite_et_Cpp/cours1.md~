@@ -1,0 +1,17 @@
+>> gros blanc car arrivé en retard
+
+   “si B_H pas défini, alors définir B_H et faire des trucs”
+#ifndef B_H
+#define B_H
+// des trucs
+
+#endif
+
+
+
+#pragma once
+
+
+
+
+Quand on utilise qu'un ou deux types d'un fichier .h, on peut utiliser

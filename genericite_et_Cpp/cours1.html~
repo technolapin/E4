@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>cours1.html</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+</head>
+
+<body>
+
+<blockquote>
+<blockquote>
+<p>gros blanc car arrivé en retard</p>
+</blockquote>
+</blockquote>
+<p>“si B_H pas défini, alors définir B_H et faire des trucs” #ifndef B_H #define B_H // des trucs</p>
+<p>#endif</p>
+<p>#pragma once</p>
+<p>Quand on utilise qu’un ou deux types d’un fichier .h, on peut utiliser la déclaration forward. Ie, faire</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">struct</span> S;</a></code></pre></div>
+<h2 id="pour-les-constantes">Pour les constantes</h2>
+<p>Ne jamais utiliser de #define pour des constantes utilisées dans le code. Ne jamais rendre les paramètres des fonctions constants</p>
+<h2 id="site-à-retenir">Site à retenir</h2>
+<p>https://en.cppreference.com/w/</p>
+<h1 id="le-c">Le C++</h1>
+<h2 id="les-vecteurs">Les vecteurs</h2>
+<p>std::vector<T> Des vecteurs comme en Rust.</p>
+<h2 id="linférence-de-type">L’inférence de type</h2>
+<p>auto i = 0; L’inférence de type. * DE L’INFÉRENCE DE TYYYPE YEEES * Bien pour éviter la répétition de code (on n’a pas à écrire tout le temps le type) et pour éviter d’avoir à écrire un type de 300 caractères à chaque déclaration de variable.</p>
+<p>On peut ajouter <code>const</code> et <code>&amp;</code> (cf références) à auto</p>
+<p>ex:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb2-1" title="1"><span class="dt">auto</span> j1 = jumbo(<span class="dv">10</span>);</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="dt">auto</span> j2 = j1; <span class="co">// deep-copy</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="dt">auto</span>&amp; j3 = j1; <span class="co">// mutable alias</span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="dt">const</span> <span class="dt">auto</span>&amp; j4 = j1; <span class="co">// immutable alias</span></a></code></pre></div>
+<p>NB: si le type inféré est déjà une référence, l’esperluette ajoutée à auto ne s’applique pas.</p>
+<h2 id="typedef">typedef</h2>
+<p>Il ne faut pas utiliser <code>typedef</code> en C++, on utilise <code>using</code> à la place</p>
+<h2 id="les-enums">les enums</h2>
+<p>En C, une enum c’est grosso modo un int. En C++, on peut écrire</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">enum</span> class month</a>
+<a class="sourceLine" id="cb3-2" title="2">{</a>
+<a class="sourceLine" id="cb3-3" title="3">    january,</a>
+<a class="sourceLine" id="cb3-4" title="4">    february,</a>
+<a class="sourceLine" id="cb3-5" title="5">    ...</a>
+<a class="sourceLine" id="cb3-6" title="6">}</a></code></pre></div>
+<h2 id="les-valeurs-par-défaut">les valeurs par défaut</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb4-1" title="1"><span class="dt">int</span> succ(<span class="dt">int</span> i, <span class="dt">int</span> delta = <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-2" title="2">{</a>
+<a class="sourceLine" id="cb4-3" title="3">    <span class="cf">return</span> i+delta;</a>
+<a class="sourceLine" id="cb4-4" title="4">}</a></code></pre></div>
+<p>À éviter de suritiliser.</p>
+<h2 id="les-références">Les références</h2>
+<p>Une référence, c’est comme un pointeur, mais qui pointe vers un unique objet bien défini, et qui ne peut pointer vers autre chose.</p>
+<p>Éviter de retourner une référence (problème de lifetime, eh oui on est pas en rust) Préférer retourner un pointeur alloué dynamiquement.</p>
+<h2 id="les-classes">Les classes</h2>
+<p>Une classe doit fournir un service.</p>
+<p>Les membres privés de la classes sont notés par convention avec un underscore à la fin ou un m_ devant ex:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb5-1" title="1">class circle</a>
+<a class="sourceLine" id="cb5-2" title="2">{</a>
+<a class="sourceLine" id="cb5-3" title="3">public:</a>
+<a class="sourceLine" id="cb5-4" title="4">    <span class="co">//...</span></a>
+<a class="sourceLine" id="cb5-5" title="5">    <span class="dt">void</span> translate(<span class="dt">float</span> dx, <span class="dt">float</span> dy);</a>
+<a class="sourceLine" id="cb5-6" title="6">    <span class="dt">void</span> print() <span class="dt">const</span>;</a>
+<a class="sourceLine" id="cb5-7" title="7">private:</a>
+<a class="sourceLine" id="cb5-8" title="8">    <span class="dt">float</span> x_, y_, r_;</a>
+<a class="sourceLine" id="cb5-9" title="9">};</a></code></pre></div>
+<p>Les classes, c’est comme les structs, mais avec tous ses champs privés par défaut.</p>
+<h3 id="les-constructeurs">Les constructeurs</h3>
+<ul>
+<li>nommé après la classe</li>
+<li>non-constant</li>
+<li>est une procédure</li>
+</ul>
+
+</body>
+</html>
