@@ -80,38 +80,38 @@ main:
 sobel_x:	
 	
 	add r8, r1, r7 		; l'addresse mémoire de la cellule
+	add r9, r1, r7 		; l'addresse mémoire de la cellule
 
-	add r9, r0, r0 		; la somme pondérée des voisines
+	add r13, r8, r21
+	add r14, r9, r23
+	add r15, r8, r24
+	add r16, r9, r25
+	add r17, r8, r26
+	add r18, r9, r28
+
+	lw r13, (r13)
+	lw r14, (r14)
+	lw r15, (r15)
+	lw r16, (r16)
+	lw r17, (r17)
+	lw r18, (r18)
 	
-	add r12, r8, r21
-	lw r9, (r12)	; valeur de la voisine
-	sub r10, r0, r9		; debut du calcul de la somme
+	sub r10, r0, r13
 
-	add r12, r8, r23
-	lw r9, (r12)
-	add r10, r10, r9
+	add r10, r0, r14
 
-	add r12, r8, r24
-	lw r9, (r12)
-	sub r10, r10, r9	
-	sub r10, r10, r9	
+	sub r10, r10, r15
+	sub r10, r10, r15
 	
-	add r12, r8, r25
-	lw r9, (r12)
-	add r10, r10, r9
-	add r10, r10, r9
+	add r10, r10, r16
+	add r10, r10, r16
 
-	add r12, r8, r26
-	lw r9, (r12)
-	sub r10, r10, r9
-
-	add r12, r8, r28
-	lw r9, (r12)
-	add r10, r10, r9
+	sub r10, r10, r17
+	add r10, r10, r18	
 
 	
 	sge r13, r10, r0
-	bnez r13, pasnulX	
+	bnez r13, pasnulX
 	sub r10, r0, r10
 	
 pasnulX:	
@@ -148,34 +148,36 @@ pasnulX:
 sobel_y:
 	
 	add r8, r1, r7 		; l'addresse mémoire de la cellule
+	add r9, r1, r7 		; l'addresse mémoire de la cellule
 
-	add r9, r0, r0
-	add r12, r8, r21
-	lw r9, (r12)	; valeur de la voisine
-	sub r10, r0, r9		; debut du calcul de la somme
+	add r13, r8, r21
+	add r14, r9, r22
+	add r15, r8, r23
+	add r16, r9, r26
+	add r17, r8, r27
+	add r18, r9, r28
+
+	lw r13, (r13)
+	lw r14, (r14)
+	lw r15, (r15)
+	lw r16, (r16)
+	lw r17, (r17)
+	lw r18, (r18)
+
+	sub r10, r0, r13		; debut du calcul de la somme
 	
-	add r12, r8, r22
-	lw r9, (r12)
-	sub r10, r10, r9	
-	sub r10, r10, r9	
+	sub r10, r10, r14	
+	sub r10, r10, r14	
 
-	add r12, r8, r23
-	lw r9, (r12)
-	sub r10, r10, r9
+	sub r10, r10, r15
 
-	add r12, r8, r26
-	lw r9, (r12)
-	add r10, r10, r9
+	add r10, r10, r16
 	
-	add r12, r8, r27
-	lw r9, (r12)
-	add r10, r10, r9
-	add r10, r10, r9
+	add r10, r10, r17
+	add r10, r10, r17
 
 
-	add r12, r8, r28
-	lw r9, (r12)
-	add r10, r10, r9
+	add r10, r10, r18
 
 	sge r13, r10, r0
 	bnez r13, pasnulY	
