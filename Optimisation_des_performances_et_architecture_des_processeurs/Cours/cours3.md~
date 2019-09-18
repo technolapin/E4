@@ -1,0 +1,7 @@
+# Aléas
+
+* WAR (write after read)
+* RAW (read after write)
+* WAW (write after write)
+
+![](images/aleas.jpg)

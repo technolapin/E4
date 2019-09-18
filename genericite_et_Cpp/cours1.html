@@ -76,6 +76,16 @@
 <li>non-constant</li>
 <li>est une procédure</li>
 </ul>
+<h3 id="les-accesseurs">Les accesseurs</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb6-1" title="1">    <span class="dt">float</span> get_r() <span class="dt">const</span>;</a>
+<a class="sourceLine" id="cb6-2" title="2">    <span class="dt">void</span> set_r(<span class="dt">float</span> r);</a></code></pre></div>
+<p>Les getters sont toujours const. Les set sont toujours mut.</p>
+<h3 id="les-destructeurs">Les destructeurs</h3>
+<ul>
+<li>notés avec un ~nomdelaclasse</li>
+<li>appelés à la mort de l’objet pour libérer sa mémoire</li>
+</ul>
+<p>Un objet meure quand on sort de sa portée (comme en rust)</p>
 
 </body>
 </html>

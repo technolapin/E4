@@ -1,0 +1,16 @@
+#include<iostream>
+
+
+#define macro(x) x ## 1;
+
+int
+main()
+{
+  int duh = macro(5);
+  std::cout << duh << std::endl;
+}
+
+/*
+  On ne peut pas faire fonctionner n! au compilateur car le
+  préprocesseur n'effectue qu'une unique passe.
+ */
