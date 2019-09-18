@@ -98,7 +98,7 @@ sobel_x:
 	
 	sub r10, r0, r13
 
-	add r10, r0, r14
+	add r10, r10, r14
 
 	sub r10, r10, r15
 	sub r10, r10, r15
@@ -144,6 +144,8 @@ pasnulX:
 	sub r7, r7, r5 		; on ne traîte pas les bords
 	sub r7, r7, r6
 
+
+	
 
 sobel_y:
 	
