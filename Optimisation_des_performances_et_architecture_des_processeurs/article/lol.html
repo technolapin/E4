@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>lol.html</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+</head>
+
+<body>
+
+<h1 id="algo-naïf">Algo naïf</h1>
+<ul>
+<li>expliquer le principe</li>
+</ul>
+<h1 id="algo-on-et-algos-dérivés">Algo O(n) et algos dérivés</h1>
+<ul>
+<li>expliquer le principe</li>
+<li>expliquer que celui en O(log(n)) est certe rapide, mais est très complexe.</li>
+<li>mentionner la borne inférieure de Gil-Werman</li>
+</ul>
+<h1 id="algo-en-o1">Algo en O(1)</h1>
+<ul>
+<li>Expliquer le principe</li>
+<li>Expliquer pourquoi la borne de Gil-Werman ne s’applique pas à cet algo</li>
+<li>problème de la taille limité des caches processeurs ( on divise alors l’image en bandes verticales à traîter séparément)</li>
+<li>multilevel histograms (garder un histogramme ne gardant que les bit de poid fort pour aller plus vite)</li>
+<li>Mise à jour conditionnelle du kernel (faire tout l’algo avec les histogrammes aproximatifs et n’accéder aux vrais valeurs que si nécessaire)</li>
+<li>marche pour les images en couleurs tout aussi bien, (mais on traîte alors des bandes d’images plus fines)</li>
+<li>en N-dimensions, marche en O(Ndim) et il faut séparer l’image en hyper-bandes à traîter séparément à cause du coût mémoire (ce qui augmente l’effet linéaire de bord)</li>
+<li>Utiliser un voisinage hexagonal se fait toujours en temps constant</li>
+</ul>
+<h1 id="résulats">Résulats</h1>
+<ul>
+<li>L’algorithme en O(1) bien plus rapide, et fonctionne bien même quand R petit, car la constante est petite</li>
+</ul>
+
+</body>
+</html>

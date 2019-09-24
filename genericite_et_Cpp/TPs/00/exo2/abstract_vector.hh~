@@ -1,0 +1,10 @@
+class abstract_vector
+{
+private:
+  int n;
+  int* data;
+
+public:
+  vector(int dim) = 0;
+
+}

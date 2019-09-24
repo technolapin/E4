@@ -1,0 +1,8 @@
+#include<iostream>
+#include "abstract_vector.hh"
+
+int
+main()
+{
+  return 0;
+}

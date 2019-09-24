@@ -1,0 +1,27 @@
+import scipy
+import numpy as np
+
+
+
+def ExerciceI():
+    n1 = 254
+    n2 = 362
+    x1_emp = 28 # espérance empirique
+    x2_emp = 28.5
+    s1 = 4.9 # ecart-type empirique
+    s2 = 4.5
+
+    # on traîte le cas 2
+    n = n2
+    m2 = x1_emp # hypothèse
+    Xn_emp = x2_emp # on vérifie si ça marche avec x1
+    Sn2 = s2
+    # t est la valeur de la statistique T
+    t = np.sqrt(n)*(Xn_emp - m2)/Sn2
+    print(t)
+
+    alpha = 0.05
+    calpha = scipy.stats.t.ppf(1 - alpha/2, n-1)
+    print(calpha)
+
+ExerciceI()

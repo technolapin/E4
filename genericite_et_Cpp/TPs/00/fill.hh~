@@ -1,0 +1,19 @@
+
+void
+fill(const matrix& jean_ives ,int an_int)
+{
+  for (int i = 0; i < jean_ives.nl*jean_ives.nc; i++)
+    {
+      jean_ives.data[i] = an_int;
+    }
+}
+
+void
+fill(const vector& jean_michel ,int an_int)
+{
+  for (int i = 0; i < jean_michel.n; i++)
+    {
+      jean_michel.data[i] = an_int;
+    }
+}
+
