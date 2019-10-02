@@ -1,6 +1,6 @@
 test = {
   'name': 'the_game_of_life',
-  'points': 1,
+  'points': 0,
   'suites': [
     {
       'cases': [

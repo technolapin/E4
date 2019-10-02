@@ -1,0 +1,5 @@
+
+vector operator*(const vector vec, const dia_vector dia)
+{
+  
+}

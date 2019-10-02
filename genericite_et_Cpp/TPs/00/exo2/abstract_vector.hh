@@ -1,63 +1,24 @@
 
 class abstract_vector
 {
-private:
+protected:
   int n;
-  int* data;
 
 public:
-  
-  abstract_vector(const abstract_vector& victor)
+  abstract_vector(int n)
   {
-    this->n = victor.n;
-    this->data = new int[victor.n];
-    for (int i = 0; i < victor.n; i++)
-    {
-      this->data[i] = victor.data[i];
-    }
+    this->n = n;
+  }
+
+  int
+  get_dim() const
+  {
+    return this->n;
   }
   
   virtual ~abstract_vector(){};
 
-  friend void
-  fill(const abstract_vector& jean_michel ,int an_int);
-
-  void
-  print()
-  {
-    std::cout << "[";
-    for (int i = 0; i < this->n; i++)
-    {
-      std::cout << this->data[i]
-		<< " ";
-    }
-    std::cout << "]\n";
-  }
+  virtual void
+  print() const = 0;
   
-  int& operator [](int i)
-  {
-    return this->data[i];
-  }
-
-  virtual abstract_vector& operator =(const abstract_vector& sempai)
-  {
-    if (this->n != sempai.n)
-    {
-      this->n = sempai.n;
-      delete[] this->data;
-      this->data = new int[sempai.n];
-    }
-    
-    for (int i = 0; i < sempai.n; i++)
-    {
-      this->data[i] = sempai.data[i];
-    }
-    
-    return *this;
-  }
-
-  virtual abstract_vector operator *(const int scalar) const;
-
-  virtual abstract_vector operator+(const int notascalar) const;
-
 };

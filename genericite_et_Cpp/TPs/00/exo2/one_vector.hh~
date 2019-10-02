@@ -1,21 +1,14 @@
-class vector : public abstract_vector
+class one_vector : public abstract_vector
 {
 private:
-  int* data;
+  int value;
 
 public:
-  vector(const int dim):
+  vector(int dim):
     abstract_vector(dim)
   {
-    this->data = new int[dim];
+    this->value = 1;
   }
-
-  vector(const vector& vec):
-    abstract_vector(vec.n)
-  {
-    this->data = new int[vec.n];
-  }
-
   ~vector() override
   {
     delete[] this->data;
@@ -35,12 +28,7 @@ public:
   }
 
 
-  int& operator [](const int i)
-  {
-    return this->data[i];
-  }
-
-  int operator [](const int i) const
+  int& operator [](int i)
   {
     return this->data[i];
   }

@@ -78,7 +78,7 @@ main:
 
 	addi r30, r0, #255 	; pour avoir un 255 quelque part
 
-sobel_x:	
+sobel:	
 	
 	add r8, r1, r7 		; l'addresse mémoire de la cellule
 	add r9, r1, r7 		; l'addresse mémoire de la cellule
@@ -120,6 +120,10 @@ sobel_x:
 	srai r11, r10, #8
 	xor r12, r11, r10
 
+        ;; teeest
+	srli r10, r11, #7
+	add r12, r12, r10
+
 	sub r11, r0, r13
 
 	sub r11, r11, r14
@@ -137,14 +141,23 @@ sobel_x:
 	srai r10, r11, #8
 	xor r9, r11, r10
 
+
+	;; teeest
+	srli r10, r11, #7
+	add r12, r12, r10
+
+	
 	add r12, r12, r9
+
+
+	srli r12, r12, #1
+	
 
 	sgeu r13, r12, r30
 
 	sub r14, r0, r13
 
 	or r15, r14, r12
-;;; 	lhi r15, #0		
 	and r15, r15, r30
 	sw sobX(r7), r15
 
@@ -154,15 +167,18 @@ sobel_x:
 
 	sub r11, r7, r6
 
-	bnez r11, sobel_x
+	bnez r11, sobel
 
 finsobel:
 	
 
 
 
+
 	
-	;; lw r7, width(r0) 	; indice
+
+
+	
 	add r7, r0, r6
 	sub r9, r2, r5
 	sub r10, r2, r6

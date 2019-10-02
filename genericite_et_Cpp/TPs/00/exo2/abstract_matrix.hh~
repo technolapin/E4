@@ -1,0 +1,25 @@
+class abstract_matrix
+{
+private:
+  int nl;
+  int nc;
+  int* data;
+
+public:
+  ~abstract_matrix()
+  {
+    delete[] this->data;
+  }
+
+
+
+  friend void
+  fill(const abstract_matrix& jean_ives ,int an_int);
+  
+  void
+  print()
+  {
+    std::cout << "print not implemented\n";
+  }
+  
+};

@@ -1,18 +1,18 @@
-class matrix
+class matrix : public abstract_matrix
 {
 private:
-  int nl;
-  int nc;
   int* data;
 
 public:
-  matrix(int nl, int nc)
+  matrix(int nl, int nc):
+    abstract_matrix(nl, nc)
   {
-    this->nl = nl;
-    this->nc = nc;
+    
     this->data = new int[nl*nc];
   }
-  matrix(const matrix& maite)
+  
+  matrix(const matrix& maite):
+    abstract_matrix(maite.nl, maite.nc)
   {
     this->nc = maite.nc;
     this->nl = maite.nl;
@@ -22,7 +22,8 @@ public:
       this->data[i] = maite.data[i];
     }
   }
-  ~matrix()
+  
+  ~matrix() override
   {
     delete[] this->data;
   }
@@ -33,7 +34,7 @@ public:
   fill(const matrix& jean_ives ,int an_int);
   
   void
-  print()
+  print() const override
   {
     std::cout << "[";
     for (int i = 0; i < this->nc; i++)
@@ -55,7 +56,13 @@ public:
     }
 
   }
-  int& operator [](int i)
+  
+  int operator [](const int i) const
+  {
+    return this->data[i];
+  }
+  
+  int& operator [](const int i)
   {
     return this->data[i];
   }

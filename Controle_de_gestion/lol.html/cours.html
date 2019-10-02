@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contrôle de gestion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link type="text/css" rel="stylesheet" href="assets/style.css" />
+    <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
+    <link type="text/css" rel="stylesheet" href="assets/hljs-solarized-dark.min.css"/>
+  </head>
+<body><h1 id="contrôle-de-gestion"><a class="header-link" href="#contrôle-de-gestion"></a>Contrôle de gestion</h1>
+<ol class="list">
+<li>(Définition) <strong><em>Traduire la stratégie de l&#39;entreprise en feuilles de route exploitables par le terrain</em></strong></li>
+<li>Comparer ce qui était prévu avec ce qui a été réalisé =&gt; calculer et comprendre les <strong><em>écarts significatifs</em></strong></li>
+</ol>
+<p>Efficacité: capacité à atteindre l&#39;objectif
+Efficience: atteindre l&#39;objectif avec une utilisation optimisée des moyens (physiques, humains &amp; financiers)</p>
+<p>Comptes à rendre à la direction = reporting tableau de bord</p>
+<p>exo: </p>
+<p>Une société vend 3 produits:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">année 2018</th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Ventes</td>
+<td style="text-align:center">1000</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">500</td>
+<td style="text-align:center">300</td>
+<td style="text-align:center">200</td>
+</tr>
+<tr>
+<td style="text-align:center">Achats</td>
+<td style="text-align:center">-500</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">-300</td>
+<td style="text-align:center">-150</td>
+<td style="text-align:center">-50</td>
+</tr>
+<tr>
+<td style="text-align:center">Salaires</td>
+<td style="text-align:center">-300</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">-200</td>
+<td style="text-align:center">-50</td>
+<td style="text-align:center">-50</td>
+</tr>
+<tr>
+<td style="text-align:center">Loyers</td>
+<td style="text-align:center">-100</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">-50</td>
+<td style="text-align:center">-20</td>
+<td style="text-align:center">-30</td>
+</tr>
+<tr>
+<td style="text-align:center">_</td>
+<td style="text-align:center">_</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Bénéfice</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">-50</td>
+<td style="text-align:center">+80</td>
+<td style="text-align:center">+70</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>On voit que le produit A est produit à pertes, mais on n&#39;a pas 50 de
+bénéfice de plus si on abandone sa production, car on ne peut pas
+forcément licencier les salariés à loisir (heureusement), et le loyer
+dans la colone A pèsera alors dans les colones B et C.</p>
+<p>Exo: Entreprise SALMANAZAR</p>
+<p>[comment]: | prixs/u                                                 | #        |   | 320     | 540     | 1050     |
+[comment]: | Unitées vendues                                         | #        |   | 1400 u  | 1000 u  | 500 u    |
+[comment]: | Frais de production/u                                   | #        |   | -200    | -450    | -750     |</p>
+<p><em>Note: ai pas répartit les frais à l&#39;échelle du produit, cf la source</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">année 2018</th>
+<th style="text-align:center"><em>totaux</em></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">ARBOIS</th>
+<th style="text-align:center">BARBERA</th>
+<th style="text-align:center">CABERNET</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Chiffre d&#39;affaire</td>
+<td style="text-align:center">+1513000</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">448000</td>
+<td style="text-align:center">525000</td>
+<td style="text-align:center">540000</td>
+</tr>
+<tr>
+<td style="text-align:left">Production</td>
+<td style="text-align:center">-1105000</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">-280000</td>
+<td style="text-align:center">-450000</td>
+<td style="text-align:center">-375000</td>
+</tr>
+<tr>
+<td style="text-align:left">Publicité</td>
+<td style="text-align:center">-62000</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">-17000</td>
+<td style="text-align:center">-20000</td>
+<td style="text-align:center">-25000</td>
+</tr>
+<tr>
+<td style="text-align:left">commissions 6%</td>
+<td style="text-align:center">-90780</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">-26880</td>
+<td style="text-align:center">-32400</td>
+<td style="text-align:center">-31500</td>
+</tr>
+<tr>
+<td style="text-align:left">Préparation de commandes</td>
+<td style="text-align:center">-88400</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">-22400</td>
+<td style="text-align:center">-36000</td>
+<td style="text-align:center">-30000</td>
+</tr>
+<tr>
+<td style="text-align:left">_</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">salaires force de vente</td>
+<td style="text-align:center">-40200</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">frais administratifs</td>
+<td style="text-align:center">-70000</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">salaire du patron</td>
+<td style="text-align:center">-44000</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">_</td>
+<td style="text-align:center">_</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">Bénéfice</td>
+<td style="text-align:center">+12620</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">+101720</td>
+<td style="text-align:center">+1600</td>
+<td style="text-align:center">+63500</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<ol class="list">
+<li>Bâtir le compte d&#39;exploitation annuel du BU et calculer dans un
+tableau détaillé la rentabilité de chacune des gammes de produits
+et analysez la rentabilité de votre BU.</li>
+</ol>
+<h2 id="les-charges"><a class="header-link" href="#les-charges"></a>les charges</h2>
+<p>Il existe 2 grandes catégories de charges:</p>
+<ul class="list">
+<li>Les charges directes</li>
+<li>Les charges indirectes</li>
+</ul>
+<p><strong>Charge directe</strong>: <em>charge que l&#39;on peut affecter au coût d&#39;un produit
+sans ambiguîté ou calcul complexe.</em></p>
+<p>Quand on fait un tableau, on ordone les lignes ainsi:</p>
+<ol class="list">
+<li>Charges variables directes</li>
+<li>Charges fixes directes</li>
+<li>Charges (à priori fixes) indirectes</li>
+</ol>
+<p>Avec une ligne vide entre chaques sections</p>
+<hr>
+<h1 id="cours-2"><a class="header-link" href="#cours-2"></a>Cours 2</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">marge commerciale</th>
+<th style="text-align:center">N-1</th>
+<th style="text-align:center">N</th>
+<th style="text-align:center">%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center">468000</td>
+<td style="text-align:center">52125</td>
+<td style="text-align:center">11</td>
+</tr>
+<tr>
+<td style="text-align:left">Production de l&#39;exercice</td>
+<td style="text-align:center">3680000</td>
+<td style="text-align:center">4156000</td>
+<td style="text-align:center">13</td>
+</tr>
+<tr>
+<td style="text-align:left">Valeur ajoutée</td>
+<td style="text-align:center">9243</td>
+<td style="text-align:center">1106788</td>
+<td style="text-align:center">20</td>
+</tr>
+<tr>
+<td style="text-align:left">E.B.E.</td>
+<td style="text-align:center">134250</td>
+<td style="text-align:center">206528</td>
+<td style="text-align:center">54</td>
+</tr>
+<tr>
+<td style="text-align:left">Résultat d&#39;Exploitation</td>
+<td style="text-align:center">110185</td>
+<td style="text-align:center">176528</td>
+<td style="text-align:center">60</td>
+</tr>
+<tr>
+<td style="text-align:left">Résultats courants avant impôt</td>
+<td style="text-align:center">103323</td>
+<td style="text-align:center">169656</td>
+<td style="text-align:center">64</td>
+</tr>
+<tr>
+<td style="text-align:left">Résultat exeptionnel</td>
+<td style="text-align:center">-625</td>
+<td style="text-align:center">-400</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">Résultat de l&#39;exercice</td>
+<td style="text-align:center">63398</td>
+<td style="text-align:center">124806</td>
+<td style="text-align:center">82</td>
+</tr>
+</tbody>
+</table>
+<p>capacité d&#39;auto-financement (ie cash flows) = résultat de l&#39;exercice + dotation aux amortissements et provisions</p>
+<h2 id="bilan"><a class="header-link" href="#bilan"></a>Bilan</h2>
+<p><strong><em>“Photo du patrimoine”</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Actif(emplois)</th>
+<th style="text-align:center">Passif(Ressources)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Biens</td>
+<td style="text-align:center">Dettes</td>
+</tr>
+</tbody>
+</table>
+<p>ie</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Actif(emplois)</th>
+<th style="text-align:center">Passif(Ressources)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Immobilisation (investissements)</td>
+<td style="text-align:center">capital</td>
+</tr>
+<tr>
+<td style="text-align:center">--------------------------------</td>
+<td style="text-align:center">Autofinancemeent</td>
+</tr>
+<tr>
+<td style="text-align:center">Stocks</td>
+<td style="text-align:center">Emprunts</td>
+</tr>
+<tr>
+<td style="text-align:center">Créances</td>
+<td style="text-align:center">------------------------------------------</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">Fournisseurs (dettes à court terme)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>Exemple: diagnostique financier de la société DLP (cf poly)</p>
+<ul class="list">
+<li>CA(N) = 21 520 k€</li>
+<li>CA(N) = CA(N-1)*1.417</li>
+<li>CA(N-1) = CA(N-2)*1.447</li>
+<li>net résultat de l&#39;exercice = résultat d&#39;exploitation + exceptionel + financier (avec impôts, ie net) = 4800 + 100 + </li>
+<li>auto-fin. = résultat de l&#39;exercice + dotation aux amortissements et provisions = </li>
+</ul>
+<ol class="list">
+<li>Évolution du chiffre d&#39;affaire (k€):</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">N-2</th>
+<th style="text-align:left">N-1</th>
+<th style="text-align:left">N</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">10496</td>
+<td style="text-align:left">15187</td>
+<td style="text-align:left">21520</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>Bilans fonctionnels à partir des bilans comptables</li>
+</ol>
+<p>Année N-2:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Actif(emplois)</th>
+<th style="text-align:left"></th>
+<th style="text-align:right">Passif(Ressources)</th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">Immo.</td>
+<td style="text-align:left">14050</td>
+<td style="text-align:right">capi propr.</td>
+<td style="text-align:left">9000</td>
+</tr>
+<tr>
+<td style="text-align:right">-----------------------</td>
+<td style="text-align:left"></td>
+<td style="text-align:right">Prov. Risques et charges</td>
+<td style="text-align:left">1500</td>
+</tr>
+<tr>
+<td style="text-align:right">Stocks</td>
+<td style="text-align:left">3500</td>
+<td style="text-align:right">Emprunts long terme</td>
+<td style="text-align:left">6000</td>
+</tr>
+<tr>
+<td style="text-align:right">Cr. Clts.</td>
+<td style="text-align:left">4800</td>
+<td style="text-align:right">Amts et provs.</td>
+<td style="text-align:left">2500</td>
+</tr>
+<tr>
+<td style="text-align:right">Cr. hexp.</td>
+<td style="text-align:left">100</td>
+<td style="text-align:right">-----------------------------------------</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:right">-----------------------</td>
+<td style="text-align:left"></td>
+<td style="text-align:right">Dette fourns.</td>
+<td style="text-align:left">4500</td>
+</tr>
+<tr>
+<td style="text-align:right">Dispo.</td>
+<td style="text-align:left">1500</td>
+<td style="text-align:right">Dette hexp.</td>
+<td style="text-align:left">300</td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:left"></td>
+<td style="text-align:right">Découvert</td>
+<td style="text-align:left">150</td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:left">----</td>
+<td style="text-align:right"></td>
+<td style="text-align:left">----</td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:left">23950</td>
+<td style="text-align:right"></td>
+<td style="text-align:left">23950</td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:left"></td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li>(rushé)</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">N-2</th>
+<th style="text-align:left">N-1</th>
+<th style="text-align:left">N</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">FR</td>
+<td style="text-align:left">4950</td>
+<td style="text-align:left">6240</td>
+<td style="text-align:left">6910</td>
+</tr>
+<tr>
+<td style="text-align:left">BFR</td>
+<td style="text-align:left">3600</td>
+<td style="text-align:left">6950</td>
+<td style="text-align:left">11120</td>
+</tr>
+<tr>
+<td style="text-align:left">Trésorerie</td>
+<td style="text-align:left">1350</td>
+<td style="text-align:left">-710</td>
+<td style="text-align:left">-4210</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="gestion-financière-prévisionnelle"><a class="header-link" href="#gestion-financière-prévisionnelle"></a>Gestion financière prévisionnelle</h1>
+<p><strong>compte de résultat analytique</strong></p>
+<p><strong>effet de levier financier</strong></p>
+<blockquote>
+<p><em>plus l&#39;entreprise emprunte pour investir dans un projet rentable, plus elle gagne</em></p>
+</blockquote>
+<p><strong>Décomposition de Dupond De Nemours</strong></p>
+<blockquote>
+<p><em>décomposer la rentabilité financière en produit d&#39;autres truc (cf poly)</em></p>
+</blockquote>
+<h1 id="application:-plan-de-financement"><a class="header-link" href="#application:-plan-de-financement"></a>application: Plan de financement</h1>
+<p>Investissement:</p>
+<ul class="list">
+<li>matériel: 150000€ (amortissement linéaire sur 5 ans)</li>
+<li>Frais de Formation: 20000€</li>
+</ul>
+<p>Produits:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Année</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Chiffre <br> d&#39;affaires</strong></td>
+<td>100 000</td>
+<td>100 000</td>
+<td>100 000</td>
+<td>150 000</td>
+<td>150 000</td>
+</tr>
+</tbody>
+</table>
+<p>Charges:</p>
+<ul class="list">
+<li>Charges fixes: 30 000€/an</li>
+<li>Charges variables: 40% du CA</li>
+<li>BFRE: 25% du CA et IS = 35%</li>
+</ul>
+<p>Financement:</p>
+<ul class="list">
+<li>Apport des actionnaires: 160 000€</li>
+<li>Dividende à verser: 25% du Résultat Net</li>
+</ul>
+<p>Question: <em>construire le plan de financement</em></p>
+<p>CAF:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>N+1</th>
+<th>N+2</th>
+<th>N+3</th>
+<th>N+4</th>
+<th>N+5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CA</td>
+<td>100000</td>
+<td>100000</td>
+<td>100000</td>
+<td>150000</td>
+<td>150000</td>
+</tr>
+<tr>
+<td>Charges var.</td>
+<td>40000</td>
+<td>40000</td>
+<td>40000</td>
+<td>60000</td>
+<td>60000</td>
+</tr>
+<tr>
+<td>Charges fixes</td>
+<td>30000</td>
+<td>30000</td>
+<td>30000</td>
+<td>30000</td>
+<td>30000</td>
+</tr>
+<tr>
+<td>Dot amort</td>
+<td>30000</td>
+<td>30000</td>
+<td>30000</td>
+<td>30000</td>
+<td>30000</td>
+</tr>
+<tr>
+<td>-------------</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Res avant IS</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>30000</td>
+<td>30000</td>
+</tr>
+<tr>
+<td>IS</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>10500</td>
+<td>10500</td>
+</tr>
+<tr>
+<td>-------------</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Res net</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>19500</td>
+<td>19500</td>
+</tr>
+<tr>
+<td>Dot amort</td>
+<td>30000</td>
+<td>30000</td>
+<td>30000</td>
+<td>30000</td>
+<td>30000</td>
+</tr>
+<tr>
+<td>CAF</td>
+<td>30000</td>
+<td>30000</td>
+<td>30000</td>
+<td>49500</td>
+<td>49500</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>PF</strong></th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>REss</strong></td>
+<td></td>
+<td>30000</td>
+<td>30000</td>
+<td>30000</td>
+<td>49500</td>
+<td>49500</td>
+</tr>
+<tr>
+<td style="text-align:left">CAF</td>
+<td>160000</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Actionnaires</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Emprint</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"><em>Total</em></td>
+<td>160000</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Emplois</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Matériel</td>
+<td>150000</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Formation</td>
+<td>20000</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Divid</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">BFRE</td>
+<td>25000</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"><em>Total</em></td>
+<td>195000</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Tr initial</td>
+<td>-</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Solde</td>
+<td>-35000</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Tr finale</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Le plan de financement étant déséquilibré, on ajoute des actionnaires pour récupérer des fonds.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>PF 2.0</strong></th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>REss</strong></td>
+<td></td>
+<td>30000</td>
+<td>30000</td>
+<td>30000</td>
+<td>49500</td>
+<td>49500</td>
+</tr>
+<tr>
+<td style="text-align:left">CAF</td>
+<td><del>160000</del> <br> 200000</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Actionnaires</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Emprint</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"><em>Total</em></td>
+<td>200000</td>
+<td>30000</td>
+<td>30000</td>
+<td>30000</td>
+<td>49500</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">--------------</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Emplois</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Matériel</td>
+<td>150000</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Formation</td>
+<td>20000</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Divid</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>7800</td>
+<td>7800</td>
+</tr>
+<tr>
+<td style="text-align:left">BFRE</td>
+<td>25000</td>
+<td></td>
+<td></td>
+<td>12500</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"><em>Total</em></td>
+<td>195000</td>
+<td>0</td>
+<td>0</td>
+<td>12500</td>
+<td>7800</td>
+<td>7800</td>
+</tr>
+<tr>
+<td style="text-align:left">--------------</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Trés. initiale</td>
+<td></td>
+<td>5000</td>
+<td>35000</td>
+<td>65000</td>
+<td>82500</td>
+<td>124200</td>
+</tr>
+<tr>
+<td style="text-align:left">Solde</td>
+<td>5000</td>
+<td>30000</td>
+<td>30000</td>
+<td>17500</td>
+<td>41700</td>
+<td>41700</td>
+</tr>
+<tr>
+<td style="text-align:left">Trés. finale</td>
+<td>5000</td>
+<td>35000</td>
+<td>65000</td>
+<td>82500</td>
+<td>124200</td>
+<td>165900</td>
+</tr>
+</tbody>
+</table>
+<h1 id="application:-plan-de-trésorerie"><a class="header-link" href="#application:-plan-de-trésorerie"></a>Application: plan de trésorerie</h1>
+<p>TVA: 20%</p>
+<p><strong>Prévisions des achats et charges:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Éléments</th>
+<th>Janvier</th>
+<th>Février</th>
+<th>Mars</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Achats (règlements 50% comptant,<br> 50% à crédit le mois suivant)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>* HT</td>
+<td>80000</td>
+<td>90000</td>
+<td>100000</td>
+</tr>
+<tr>
+<td>Charges externes (décaissées le mois même)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>* HT</td>
+<td>20000</td>
+<td>22000</td>
+<td>25000</td>
+</tr>
+<tr>
+<td>Salaires nets (décaissés le mois même)</td>
+<td>50000</td>
+<td>50000</td>
+<td>60000</td>
+</tr>
+<tr>
+<td>Charges sociales (décaissées le mois suivant)</td>
+<td>30000</td>
+<td>30000</td>
+<td>36000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prévision des ventes:<br>(Règlement: 60% comptant; 40% le mois suivant)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Éléments</th>
+<th>Janvier</th>
+<th>Février</th>
+<th>Mars</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ventes HT</td>
+<td>200000</td>
+<td>250000</td>
+<td>300000</td>
+</tr>
+</tbody>
+</table>
+<p>NB:</p>
+<ul class="list">
+<li>les achats et charges externes sont assujetis à la TVA</li>
+<li>la trésorerie fin décemre N-1 est de 32500€</li>
+<li><p>La TVA à verser au mois de Janvier N est de 15600€</p>
+</li>
+<li><p>Calculer les montants TTC</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Éléments</th>
+<th>Janvier</th>
+<th>Février</th>
+<th>Mars</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Achats HT</td>
+<td>80000</td>
+<td>90000</td>
+<td>100000</td>
+</tr>
+<tr>
+<td>Achats TTC</td>
+<td>15600</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Charges externes HT</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Charges externes TTC</td>
+<td>20000</td>
+<td>22000</td>
+<td>25000</td>
+</tr>
+<tr>
+<td>Salaires nets</td>
+<td>50000</td>
+<td>50000</td>
+<td>60000</td>
+</tr>
+<tr>
+<td>Charges sociales</td>
+<td>30000</td>
+<td>30000</td>
+<td>36000</td>
+</tr>
+<tr>
+<td>Ventes HT</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ventes TTC</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TVA</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TVA déductible</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TVA collectée</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TVA à décaisser</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TVA à payer</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>Calculer</li>
+</ol>
+<hr>
+<h1 id="cours-d'après-(je-sais-plus-compter)"><a class="header-link" href="#cours-d'après-(je-sais-plus-compter)"></a>Cours d&#39;après (je sais plus compter)</h1>
+<p>(rappel charges variables/fixes directes/indirectes)</p>
+<table>
+<thead>
+<tr>
+<th>En Stock</th>
+<th>Drone A</th>
+<th>Drone B</th>
+<th>Drone C</th>
+<th>total (=15j de ventes)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qte annuelles</td>
+<td>1400</td>
+<td>1000</td>
+<td>500</td>
+<td>2900 u.</td>
+</tr>
+<tr>
+<td>frac. de loyer à prendre <br> en charge</td>
+<td>1400/2900</td>
+<td>1000/2900</td>
+<td>500/2900</td>
+</tr>
+</tbody>
+</table>
+<p>** t_mcv = taux de marge sur Coût Variable</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chiffre d&#39;Af</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+<tr>
+<td>Coûts</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>------------</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>= Marge</td>
+<td>Ma</td>
+<td>Mb</td>
+<td>Mc</td>
+</tr>
+</tbody>
+</table>
+<h2 id="application-société-golem"><a class="header-link" href="#application-société-golem"></a>Application société GOLEM</h2>
+<table>
+<thead>
+<tr>
+<th><strong><em>Compte de résultat</em></strong></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Achats</td>
+<td>2 840 400 €</td>
+<td>CA</td>
+<td>6 936 000 €</td>
+</tr>
+<tr>
+<td>Frais var de prod</td>
+<td>756 000 €</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Loyers</td>
+<td>80 000 €</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Salaires chargés</td>
+<td>1 025 808 €</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>energie</td>
+<td>12 000 €</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Frais de transp.</td>
+<td>375 216 €</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Publicité</td>
+<td>70 000 €</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Frais de prep des commandes</td>
+<td>56 808 €</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Résultat</strong></td>
+<td><strong>1 719 768 €</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Plastique</th>
+<th></th>
+<th></th>
+<th></th>
+<th>Composants</th>
+<th></th>
+<th></th>
+<th><strong>Total</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Q</td>
+<td>U</td>
+<td>T</td>
+<td></td>
+<td>Q</td>
+<td>U</td>
+<td>T</td>
+<td></td>
+</tr>
+<tr>
+<td>Achats</td>
+<td>36000</td>
+<td>7.50 €</td>
+<td>270 000 €</td>
+<td></td>
+<td>61200</td>
+<td>42 €</td>
+<td>2 570 400 €</td>
+<td>2 840 400 €</td>
+</tr>
+<tr>
+<td>F. transp</td>
+<td></td>
+<td>0.30 €</td>
+<td>10 800 €</td>
+<td></td>
+<td></td>
+<td>1.68€</td>
+<td>102 816 €</td>
+<td>113 616 €</td>
+</tr>
+<tr>
+<td>F. Prépa</td>
+<td></td>
+<td>0.15 €</td>
+<td>5400 €</td>
+<td></td>
+<td></td>
+<td>0.84 €</td>
+<td>51 408 €</td>
+<td>56 808 €</td>
+</tr>
+<tr>
+<td>Coût variable</td>
+<td></td>
+<td>7.95 €</td>
+<td>286 200€</td>
+<td></td>
+<td></td>
+<td>44.52</td>
+<td>2724624 €</td>
+<td>3 010 824 €</td>
+</tr>
+<tr>
+<td>Salaires</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>168000€</td>
+</tr>
+<tr>
+<td>Loyers</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>10 000 €</td>
+</tr>
+<tr>
+<td>Energie</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>2 000 €</td>
+</tr>
+<tr>
+<td>COUT DU SERVICE</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>3 190 824 €</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
