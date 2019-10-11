@@ -362,6 +362,126 @@ NB:
 | Salaires        |           |        |           |   |            |        |             | 168000€     |
 | Loyers          |           |        |           |   |            |        |             | 10 000 €    |
 | Energie         |           |        |           |   |            |        |             | 2 000 €     |
-| COUT DU SERVICE |           |        |           |   |            |        |             | 3 190 824 € |
+| COÛT DU SERVICE |           |        |           |   |            |        |             | 3 190 824 € |
 
 
+| Production                    | Jouets |        |        | Robots |        |         | TOTAL   |
+|-------------------------------|--------|--------|--------|--------|--------|---------|---------|
+|                               | Q      | CU     | CT     | Q      | CU     | CT      |         |
+| Frais variables de production | 1200   | 70     | 84000  | 4800   | 140    | 672000  | 756000  |
+| Plastique                     | 2400   | 7,95   | 19080  | 33600  | 7,95   | 267120  | 286200  |
+| Composants                    | 3600   | 44,52  | 160272 | 57600  | 44,52  | 2564352 | 2724624 |
+| COÛT VARIABLE                 | 1200   | 219,46 | 263352 | 4800   | 729,89 | 3503472 | 3766824 |
+| Salaires                      |        |        |        |        |        |         | 243600  |
+| Loyer                         |        |        |        |        |        |         | 40000   |
+| Énergie                       |        |        |        |        |        |         | 5000    |
+| COÛT DU SERVICE               |        |        |        |        |        |         | 4055424 |
+|                               |        |        |        |        |        |         |         |
+
+| Ventes                        | Jouets |        |        | Robots |        |         | TOTAL   |
+|-------------------------------|--------|--------|--------|--------|--------|---------|---------|
+|                               | Q      | CU     | CT     | Q      | CU     | CT      |         |
+| Ventes                        | 1200   | 380    | 456000 | 4800   | 1350   | 6480000 | 6936000 |
+| Coût de production            | 1200   | 219,46 | 263352 | 4800   | 729,89 | 3503472 | 3766824 |
+| Représentants commission      | 1200   | 10,64  | 12768  | 4800   | 37,8   | 181440  | 194208  |
+| Frais de distribution         | 1200   | 22     | 26400  | 4800   | 49     | 235200  | 261600  |
+| Marge sur coût variable       | 1200   | 127,9  | 153480 | 4800   | 533,31 | 2559888 | 2713368 |
+| Représentants brut            | 3      | 25200  | 75600  | 2      | 25200  | 50400   | 126000  |
+| Publicité                     |        |        | 20000  |        |        | 50000   | 70000   |
+| Marge sur coût direct         |        |        |        |        |        |         | 2517368 |
+| Salaires                      |        |        |        |        |        |         | 84000   |
+| Loyers                        |        |        |        |        |        |         | 10000   |
+| Énergie                       |        |        |        |        |        |         | 2000    |
+| COÛT DU SERVICE               |        |        |        |        |        |         | 2421368 |
+
+
+
+Pour le DS:
+* La partie de la prof sera du lourd (bcp d'énoncé)
+* Les trois questions à traîter se feront en genre 5 minutes.
+* Il faudra faire le calcul le plus simple possible, sinon points en moins (ie: bien utiliser les tableaux)
+
+
+
+---
+
+Plutôt que de raisonner en centres de coûts (achats, direction,
+production...), certaines entreprises préfèrent raisonner en centre de
+profits. Dans ce cas, chaque service facture ces prestations aux
+autres services. Le prix auquel s'effectue cette facturation s'appelle
+le **prix de cession interne**. Il permet à chaque centre de valoriser
+son travail et de calculer sa contribution au résultat global.
+
+Chaque centre raisonne alors comme une entreprise dans l'entreprise,
+avec ses propres coûts et ses propres marges.
+
+
+Exemple avec un prix de cession interne trop faible
+
+|                               | Plastique     |              |                 |   | Composants   |              |                   | **Total**         |
+|-------------------------------|---------------|--------------|-----------------|---|--------------|--------------|-------------------|-------------------|
+|                               | Q             | U            | T               |   | Q            | U            | T                 |                   |
+| ***Prix de cession interne*** | ***36 000***  | ***8.00 €*** | ***288 000 €*** |   | ***61 200*** | ***45 €***   | ***2 754 000 €*** | ***3 042 000 €*** |
+| Achats                        | 36 000        | 7.50 €       | 270 000 €       |   | 61 200       | 42 €         | 2 570 400 €       | 2 840 400 €       |
+| F. transp                     |               | 0.30 €       | 10 800 €        |   |              | 1.68€        | 102 816 €         | 113 616 €         |
+| F. Prépa                      |               | 0.15 €       | 5400 €          |   |              | 0.84 €       | 51 408 €          | 56 808 €          |
+| Coût variable                 |               | 7.95 €       | 286 200€        |   |              | 44.52        | 2 724 624 €       | 3 010 824 €       |
+| ***Marge sur coût variable*** | ***36 000 *** | ***0.05€***  | ***1 800 €***   |   | ***61 200*** | ***0.48 €*** | ***29376 €***     | ***31 176€***                  |
+| Salaires                      |               |              |                 |   |              |              |                   | 168 000€          |
+| Loyers                        |               |              |                 |   |              |              |                   | 10 000 €          |
+| Energie                       |               |              |                 |   |              |              |                   | 2 000 €           |
+| ***PROFIT DU SERVICE***       |               |              |                 |   |              |              |                   | ***-148 824 €***  |
+|                               |               |              |                 |   |              |              |                   |                   |
+
+Le faît d'établir des prix de cession interne n'a absolument aucun
+impact sur le bénéfice global de l'entreprise
+
+
+Inconvénient de cette méthode: quoiqu'il arrive, le responsable de
+production sait qu'il gagne une marge de 20%. Il a donc tout intérêt à
+augmenter les frais de productions pour augmenter le prix de cession
+interne et donc gagner encore plus.
+Solution: Facturer en interne au prix du produit ou de la prestation s'il était
+fait par une société extérieure.
+Inconvénient: trouver le prix demande du boulot.
+
+
+---
+truc avec les crèpes
+
+
+| Prévu | Crèpes | 1000 |     | Coût total |
+|-------|--------|------|-----|------------|
+|       | Oeuf   | 100  | 0,7 | 70         |
+|       | Farine | 6,25 | 4   | 25         |
+|       |        |      |     | 95         |
+
+| Le préétabli         | Crèpes | 1250   |                  | Coût Total |
+|----------------------|--------|--------|------------------|------------| 
+|                      | Oeuf   | 125    | 0,7              | 87,5       |
+|                      | Farine | 7,8125 | 4                | 31,25      |
+|                      |        |        |                  | 118,75     |
+
+| Ce qui a été réalisé | Crèpes | 1250  |                  | Coût total |
+|----------------------|--------|-------|------------------|------------|
+|                      | Oeuf   | 150   | 0,6              | 90         |
+|                      | Farine | 8,125 | 4,09846153846154 | 33,3       |
+|                      |        |       |                  | 123,3      |
+
+
+
+
+| Écart global | Δ sur Q               | Δ sur C         |
+|--------------|-----------------------|-----------------|
+| 2.50 =       | C_p (Q_r - Q_p) + | Q_r (C_r - C_p) |
+
+|        | ÉCARTS | sur Q | sur C |
+|--------|--------|-------|-------|cours.html
+| Oeufs  | 2,5    | 17,5  | 15    |
+| Farine | 2,05   | 1,25  | 0,80  |
+| total  | 4,55   |
+
+
+
+Cp, Cr: coûts préétablit & réel
+Qp, Qr: qtés préétéblie & réélle

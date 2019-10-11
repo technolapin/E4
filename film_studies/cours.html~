@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>cours.html</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+</head>
+
+<body>
+
+Layout: /usr/lib/node_modules/markdown-styles/layouts/thomasf-solarizedcssdark/
+Input: /home/clement/Cours/film_studies/cours.md
+Output: /home/clement/Cours/film_studies/output
+Copy asset file /usr/lib/node_modules/markdown-styles/layouts/thomasf-solarizedcssdark/assets/hljs-solarized-dark.min.css => /home/clement/Cours/film_studies/output/assets/hljs-solarized-dark.min.css
+Copy asset file /usr/lib/node_modules/markdown-styles/layouts/thomasf-solarizedcssdark/assets/pilcrow.css => /home/clement/Cours/film_studies/output/assets/pilcrow.css
+Copy asset file /usr/lib/node_modules/markdown-styles/layouts/thomasf-solarizedcssdark/assets/style.css => /home/clement/Cours/film_studies/output/assets/style.css
+
+</body>
+</html>
