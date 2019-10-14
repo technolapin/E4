@@ -4,6 +4,7 @@
 #include <memory>
 #include <optional>
 #include "structs.hh"
+#include "structs.cc"
 
 
 template<class T>
@@ -20,8 +21,7 @@ public:
     width(width),
     height(height),
     box(0, 0, width, height),
-    data(width*height)
-  {}
+    data(width*height) {}
 
   std::optional<T>
   get_pixel(point2d pt)
