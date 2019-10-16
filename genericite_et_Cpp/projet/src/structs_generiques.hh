@@ -311,7 +311,6 @@ distance_map(NImage<dim, int, Box> &img)
     for (nei_iter.start(head); nei_iter.is_valid(); nei_iter.next())
     {
       auto pt_nei = nei_iter.value();
-      std::cout << pt_nei.coords[0] << " " << pt_nei.coords[1] << " : " << output.get_pixel(pt_nei).value() <<std::endl; 
       if (output.get_pixel(pt_nei).value() == -1)
       {
 	output.set_pixel(pt_nei, dist_head+1);

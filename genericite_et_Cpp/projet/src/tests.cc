@@ -111,25 +111,6 @@ test_masked_box()
   std::cout << std::endl << "map"<<std::endl;
   print2d(map, dims);
 
-  auto nei_iter = img.neighboor_iterator();
-
-  for (nei_iter.start(NPoint<dim>({0,0}));
-       nei_iter.is_valid();
-       nei_iter.next())
-  {
-    auto p = nei_iter.value();
-    std::cout << p.coords[0] << " " << p.coords[1] << std::endl;
-  }
-
-  auto iter = img.iterator();
-  for (iter.start(); iter.is_valid(); iter.next())
-  {
-    auto p = iter.value();
-    std::cout << "img|" << p.coords[0] << " " << p.coords[1]<<" : "
-	      << img.get_pixel(p).value() << std::endl;
-    
-
-  }
   
   //assert(masked_box.within(NPoint<dim>({0,0})));
   
