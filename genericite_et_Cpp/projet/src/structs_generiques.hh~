@@ -1,0 +1,6 @@
+#pragma once
+
+struct NPoint<int dim>
+{
+  std::vector<int> coords;
+}

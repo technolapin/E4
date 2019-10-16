@@ -1,0 +1,73 @@
+#pragma once
+
+void
+test_generics()
+{
+  auto p1 = NPoint<3>({2, 4, 8});
+  auto p2 = NPoint<3>({0, 0, 0});
+  auto p3 = NPoint<3>({0, 2, 3});
+  assert(p2 < p1);
+  assert(p2 <= p1);
+  assert(p3 < p1);
+  assert(p3 <= p1);
+  assert(p2 < p3);
+  assert(p2 <= p3);
+
+  auto box = NBox<3>(p2, p1);
+
+  assert(!box.within(p1));
+  assert(box.within(p2));
+  assert(box.within(p3));
+  auto pmin = box.get_min();
+  pmin.coords[0] = -4;
+  assert(pmin.coords[0] != box.get_min().coords[0]);
+
+  auto iter = NBoxIterator<3>(box); 
+  auto ngh_iter = NNghIterator<3>(box);
+  for(ngh_iter.start(p3); ngh_iter.is_valid(); ngh_iter.next())
+  {
+    auto pt = ngh_iter.value();
+    for (int i = 0; i < 3; i++)
+      std::cout <<  pt.coords[i] << " ";
+    std::cout << std::endl;
+  }
+
+  auto img = NImage<3, int>(p1);
+  img.set_pixel(p3, 8);
+  assert(img.get_pixel(p3)==8);
+}
+
+void
+test_ndim_map()
+{
+  auto
+  print2d = [](NImage<2, int> &img,
+	       NPoint<2> &dims)
+	    {
+	      auto iter = img.iterator();
+	      iter.start();
+	      while (iter.is_valid())
+	      {
+		for(int i = 0; i < dims.coords[0]; i++)
+		{
+		  std::cout << img.get_pixel(iter.value()).value() << " "; 
+		  iter.next();
+		  if (!iter.is_valid())
+		    break;
+		  
+		}
+		std::cout << std::endl;
+	      }  
+	    };
+
+  const int dim = 2;
+  auto dims = NPoint<dim>({4, 6});
+  auto img = NImage<dim, int>(dims); 
+  img.set_pixel(NPoint<dim>({0, 0}), 1);
+  auto map = distance_map(img);
+
+  print2d(img, dims); 
+  std::cout << std::endl;
+  print2d(map, dims);
+
+}
