@@ -75,27 +75,28 @@ box2diterator::value()
 }
 
 
-neighb2d_iterator::neighb2d_iterator(const box2d& box, const point2d& cell):
-  neighborhood(std::vector<point2d>())
+neighb2d_iterator::neighb2d_iterator(const box2d& box):
+  neighborhood(std::vector<point2d>()),
+  box(box)
+{}
+  
+void
+neighb2d_iterator::start(const point2d& cell)
 {
+  this->neighborhood.clear();
   point2d left  = point2d{cell.x-1, cell.y};
   point2d right = point2d{cell.x+1, cell.y};
   point2d up    = point2d{cell.x, cell.y-1};
   point2d down  = point2d{cell.x, cell.y+1};
   
-  if (box.within(left))
+  if (this->box.within(left))
     this->neighborhood.push_back(left);
-  if (box.within(right))
+  if (this->box.within(right))
     this->neighborhood.push_back(right);
-  if (box.within(up))
+  if (this->box.within(up))
     this->neighborhood.push_back(up);
-  if (box.within(down))
+  if (this->box.within(down))
     this->neighborhood.push_back(down);
-}
-  
-void
-neighb2d_iterator::start()
-{
   this->iterator = this->neighborhood.begin();
 }; // renvoie rien du tout et initialise l'itérateur
 

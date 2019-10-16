@@ -58,12 +58,14 @@ class neighb2d_iterator
 private:
   std::vector<point2d> neighborhood;
   std::vector<point2d>::iterator iterator;
-
-public:
-  neighb2d_iterator(const box2d& box, const point2d& cell);
+  box2d box;
   
+public:
+  neighb2d_iterator(const box2d& box);
+  
+
   void
-  start();
+  start(const point2d& cell);
 
   bool
   is_valid();

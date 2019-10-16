@@ -33,7 +33,7 @@ public:
     else
     {
       return {};
-    }	       
+    }
   }
 
   void
@@ -52,9 +52,9 @@ public:
   }
   
   neighb2d_iterator
-  neighboor_iterator(const point2d pt)
+  neighboor_iterator()
   {
-    return neighb2d_iterator(this->box, pt);
+    return neighb2d_iterator(this->box);
   }
 
   void
@@ -82,7 +82,10 @@ distance_map(image2d<int> &img)
   auto heads = std::queue<point2d>();
   
   auto iter = img.iterator();
+  auto nei_iter = img.neighboor_iterator();
+  // bad idea: prevent easy parallelisation
 
+  
   for (iter.start(); iter.is_valid(); iter.next())
   {
     auto pt = iter.value();
@@ -107,10 +110,9 @@ distance_map(image2d<int> &img)
     heads.pop();
     auto dist_head = output.get_pixel(head).value();
 
-    auto nei_it = img.neighboor_iterator(head);
-    for (nei_it.start(); nei_it.is_valid(); nei_it.next())
+    for (nei_iter.start(head); nei_iter.is_valid(); nei_iter.next())
     {
-      auto pt_nei = nei_it.value();
+      auto pt_nei = nei_iter.value();
       if (output.get_pixel(pt_nei).value() == -1)
       {
 	output.set_pixel(pt_nei, dist_head+1);
@@ -140,9 +142,9 @@ test_structs()
   }
 
 
-  auto nei = neighb2d_iterator(box, point2d{8,8});
+  auto nei = neighb2d_iterator(box);
 
-  for (nei.start(); nei.is_valid(); nei.next())
+  for (nei.start(point2d{8,8}); nei.is_valid(); nei.next())
   {
     auto p = nei.value();
     std::cout << p.x << " " << p.y << std::endl;
@@ -159,6 +161,7 @@ test_map()
 {
   auto img = image2d<int>(8, 4); 
   img.set_pixel(point2d{0, 0}, 1);
+  img.set_pixel(point2d{7, 0}, 1);
   auto map = distance_map(img);
 
   
@@ -174,3 +177,11 @@ main()
   test_map();
   return 0;
 }
+/*
+II.3:
+À ce stade, le code n'est toujours pas générique, car
+seul le type des valeurs des pixels de l'image est générique, 
+alors que le type de points, du domaine, et des iterateurs sont 
+toujours fixés (on est toujours en dimension 2).
+Il suffit d'ajouter en paramètre de la template la dimension de l'image, et de rendre les autres classes et structures génériques pour pouvoir en changer la dimension.
+ */
