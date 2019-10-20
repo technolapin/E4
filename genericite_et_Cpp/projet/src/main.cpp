@@ -5,6 +5,12 @@
 #include <optional>
 #include <cassert>
 
+
+#include "point.hh"
+#include "box.hh"
+#include "box_iterator.hh"
+#include "ngh_iterator.hh"
+#include "image.hh"
 #include "structs_generiques.hh"
 #include "structs_generiques.cc"
 

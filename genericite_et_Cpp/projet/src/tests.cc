@@ -92,12 +92,17 @@ test_masked_box()
   mask.set_pixel(NPoint<dim>({1, 0}), true);
   mask.set_pixel(NPoint<dim>({2, 0}), true);
 
-  mask.set_pixel(NPoint<dim>({1, 1}), true);
-  mask.set_pixel(NPoint<dim>({2, 1}), true);
 
   mask.set_pixel(NPoint<dim>({3, 0}), true);
   mask.set_pixel(NPoint<dim>({4, 0}), true);
 
+  mask.set_pixel(NPoint<dim>({3, 3}), true);
+  mask.set_pixel(NPoint<dim>({4, 3}), true);
+  mask.set_pixel(NPoint<dim>({4, 2}), true);
+
+  //mask.set_pixel(NPoint<dim>({4, 1}), true);
+
+  
   auto masked_box = NMaskedBox<dim>(mask);
 
   auto img = NImage<dim, int, NMaskedBox<dim>>(masked_box); 

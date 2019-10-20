@@ -15,4 +15,3 @@ operator<(NPoint<dim> pa, NPoint<dim> pb)
   return !(pb <= pa);
 }
 
-
