@@ -20,7 +20,7 @@ public:
   }
 
   bool
-  is_valid()
+  is_valid() const
   {
     return this->box.within(this->current);
   }
@@ -51,7 +51,7 @@ public:
 }
 
   Point
-  value()
+  value() const
   {
     return this->current;
   }

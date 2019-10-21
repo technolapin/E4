@@ -22,7 +22,9 @@ test_generics()
   pmin.coords[0] = -4;
   assert(pmin.coords[0] != box.get_min().coords[0]);
 
-  auto iter = NBoxIterator<3>(box); 
+  auto iter = NBoxIterator<3>(box);
+  iter.start();
+  assert(iter.is_valid());
   auto ngh_iter = NNghIterator<3>(box);
   for(ngh_iter.start(p3); ngh_iter.is_valid(); ngh_iter.next())
   {
@@ -117,6 +119,44 @@ test_masked_box()
   print2d(map, dims);
 
   
-  //assert(masked_box.within(NPoint<dim>({0,0})));
+  assert(masked_box.within(NPoint<dim>({0,0})));
+  
+}
+
+template<typename T, typename Box>
+void
+add_pixel_sequence(NImage<2, T, Box> &img,
+		   std::vector<T> values)
+{
+  auto width = img.get_box()->get_max().coords[0];
+  auto iter = img.iterator();
+  iter.start();
+  auto count = 0;
+  while (iter.is_valid() && iter.value().to_index(img.get_box()->get_max()) < values.size())
+  {
+    img.set_pixel(iter.value(), values[count]);
+    ++count;
+    iter.next();
+  }
+  
+}
+
+void
+test_partial()
+{
+  const int dim = 2;
+  using partial_box2d = NMaskedBox<dim>;
+  using partial_image2d = NImage<dim, unsigned, partial_box2d>;
+  using Point = NPoint<dim>;
+  
+  auto dims = NPoint<dim>({8, 8});
+
+  auto part_box = partial_box2d(dims);
+  auto part_img = partial_image2d(part_box);
+
+  add_pixel_sequence(part_img,
+		     std::vector<unsigned>({1, 2, 3, 4})
+		     );
+
   
 }

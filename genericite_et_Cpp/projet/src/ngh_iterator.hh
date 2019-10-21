@@ -39,7 +39,7 @@ public:
   }
 
   bool
-  is_valid()
+  is_valid() const
   {
     return this->iterator != this->neighborhood.end();
   }
@@ -51,7 +51,7 @@ public:
   }
 
   Point
-  value()
+  value() const
   {
     return *(this->iterator);
   }

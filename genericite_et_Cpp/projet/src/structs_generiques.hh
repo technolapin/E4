@@ -9,6 +9,10 @@ private:
   Mask mask;
   
 public:
+  NMaskedBox(Point dims):
+    mask(Mask(dims))
+  {}
+  
   NMaskedBox(Mask mask):
     mask(mask)
   {}
@@ -17,10 +21,6 @@ public:
   within(Point pt) const
   {
     auto pix = this->mask.get_pixel(pt);
-    /*
-    return (this->mask.get_box()->within(pt)
-	    && this->mask.get_pixel(pt).value());
-    */
     return pix.has_value() && pix.value();
   }
   
@@ -45,7 +45,7 @@ public:
 
 template<int dim, typename Box>
 NImage<dim, int, Box>
-distance_map(NImage<dim, int, Box> &img)
+distance_map(const NImage<dim, int, Box> &img)
 {
   auto output = NImage<dim, int, Box>(img);
   auto heads = std::queue<NPoint<dim>>();
@@ -88,6 +88,5 @@ distance_map(NImage<dim, int, Box> &img)
   
   return output;
 }
-
 
 

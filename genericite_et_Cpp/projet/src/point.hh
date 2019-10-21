@@ -21,7 +21,7 @@ struct NPoint
 
 
   int
-  product()
+  product() const
   {
     int size = 1;
     for (int i = 0; i < dim; i++)

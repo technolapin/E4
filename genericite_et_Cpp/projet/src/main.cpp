@@ -23,8 +23,6 @@
 int
 main()
 {
-  //test_structs();
-  //test_map();
   test_generics();
   test_ndim_map();
   test_masked_box();
