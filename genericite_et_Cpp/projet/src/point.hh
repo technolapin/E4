@@ -5,7 +5,7 @@ struct NPoint
 {
   std::array<int, dim> coords;
 
-  int
+  unsigned
   to_index(NPoint<dim> dims)
   {
     int index = 0;

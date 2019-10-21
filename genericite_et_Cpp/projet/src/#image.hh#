@@ -71,6 +71,6 @@ public:
     return NghIterator(this->box);
   }
 
-  
+
   
 };

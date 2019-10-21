@@ -66,7 +66,7 @@ test_ndim_map()
   const int dim = 2;
   auto dims = NPoint<dim>({4, 6});
   auto box = NBox<dim>(NPoint<dim>::zero(), dims);
-  auto img = NImage<dim, int>(box);
+  auto img = NImage<dim, unsigned>(box);
   img.set_pixel(NPoint<dim>({0, 0}), 1);
   auto map = distance_map(img);
 
@@ -107,7 +107,7 @@ test_masked_box()
   
   auto masked_box = NMaskedBox<dim>(mask);
 
-  auto img = NImage<dim, int, NMaskedBox<dim>>(masked_box); 
+  auto img = NImage<dim, unsigned, NMaskedBox<dim>>(masked_box); 
   img.set_pixel(NPoint<dim>({0, 0}), 1);
 
   std::cout << "img" << std::endl;
@@ -125,19 +125,21 @@ test_masked_box()
 
 template<typename T, typename Box>
 void
-add_pixel_sequence(NImage<2, T, Box> &img,
+add_pixel_sequence(NImage<2, T, Box>* img,
 		   std::vector<T> values)
 {
-  auto width = img.get_box()->get_max().coords[0];
-  auto iter = img.iterator();
-  iter.start();
-  auto count = 0;
-  while (iter.is_valid() && iter.value().to_index(img.get_box()->get_max()) < values.size())
+  auto dims = img->get_box()->get_max();
+  auto box = NBox<2>(NPoint<2>::zero(), dims);
+  auto iter = NBoxIterator<2>(box);
+  
+  
+  for (iter.start();
+       iter.is_valid() && iter.value().to_index(dims) < values.size();
+       iter.next())
   {
-    img.set_pixel(iter.value(), values[count]);
-    ++count;
-    iter.next();
+    img->set_pixel(iter.value(), values[iter.value().to_index(dims)]);
   }
+  
   
 }
 
@@ -149,14 +151,30 @@ test_partial()
   using partial_image2d = NImage<dim, unsigned, partial_box2d>;
   using Point = NPoint<dim>;
   
-  auto dims = NPoint<dim>({8, 8});
+  auto dims = Point({5, 6});
 
   auto part_box = partial_box2d(dims);
+  add_pixel_sequence(part_box.get_mask(),
+		     std::vector<bool>({1, 1, 1, 1, 0,
+					0, 0, 0, 1, 0,
+					0, 1, 1, 1, 0,
+					0, 1, 0, 1, 0,
+					1, 1, 0, 0, 0,
+					0, 1, 1, 1, 1
+		       })
+		     );
   auto part_img = partial_image2d(part_box);
 
-  add_pixel_sequence(part_img,
-		     std::vector<unsigned>({1, 2, 3, 4})
+  std::cout << std::endl;
+  print2d(part_img, dims);
+  add_pixel_sequence(&part_img,
+		     std::vector<unsigned>({1})
 		     );
-
+  std::cout << std::endl;
+  print2d(part_img, dims);
+  
+  auto map = distance_map(part_img);
+  std::cout << std::endl;
+  print2d(map, dims);
   
 }

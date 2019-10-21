@@ -35,19 +35,24 @@ public:
   {
     return this->mask.get_box()->get_max();
   }
+
+  Mask*
+  get_mask()
+  {
+    return &this->mask;
+  }
   
 };
 
 
-
-
+const unsigned MAX_UNSIGNED = 65535;
 
 
 template<int dim, typename Box>
-NImage<dim, int, Box>
-distance_map(const NImage<dim, int, Box> &img)
+NImage<dim, unsigned, Box>
+distance_map(const NImage<dim, unsigned, Box> &img)
 {
-  auto output = NImage<dim, int, Box>(img);
+  auto output = NImage<dim, unsigned, Box>(img);
   auto heads = std::queue<NPoint<dim>>();
   auto iter = img.iterator();
   auto nei_iter = img.neighboor_iterator();
@@ -65,7 +70,7 @@ distance_map(const NImage<dim, int, Box> &img)
     }
     else
     {
-      output.set_pixel(pt, -1);
+      output.set_pixel(pt, MAX_UNSIGNED);
     }
   }
   
@@ -78,7 +83,7 @@ distance_map(const NImage<dim, int, Box> &img)
     for (nei_iter.start(head); nei_iter.is_valid(); nei_iter.next())
     {
       auto pt_nei = nei_iter.value();
-      if (output.get_pixel(pt_nei).value() == -1)
+      if (output.get_pixel(pt_nei).value() == MAX_UNSIGNED)
       {
 	output.set_pixel(pt_nei, dist_head+1);
 	heads.push(pt_nei);
@@ -88,5 +93,6 @@ distance_map(const NImage<dim, int, Box> &img)
   
   return output;
 }
+
 
 

@@ -26,5 +26,6 @@ main()
   test_generics();
   test_ndim_map();
   test_masked_box();
+  test_partial();
   return 0;
 }
