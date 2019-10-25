@@ -485,3 +485,118 @@ truc avec les crèpes
 
 Cp, Cr: coûts préétablit & réel
 Qp, Qr: qtés préétéblie & réélle
+
+
+partiel:
+* 2h
+* finance: 2 exos sur 2 des 3 modules
+* 25 octobre
+* 
+* 
+
+
+
+---
+# Le choix des investissements
+
+*V.A.N. (valeur actualisée nette)*
+> on prend en compte les intérêts et l'actualisation pour savoir si une somme perçue dans n ans rapporte autant qu'une autre somme perçue tout de suite)
+
+
+Indice de profitabilité = 1 + VAN/Capital Investi
+
+---
+
+objectif du centre d'approvisionnement:
+Faire en sorte que les matières nécessaires à la production / les marchandises nécessaires aux ventes soient dispo
+* au bon moment
+* en qtés suffisantes
+* à un niveau de qualité attendu
+* pour le prix le plus faible possible
+
+Coût total du centre d'appro <br>
+= Coût de passation de commande + Coût de possession du stock<br>
+= tous les coûts supportés par l'entreprise jusqu'à ce que les produits entrent en stock + tous les coûts engendrés par l'existence d'un stock dans l'entreprise
+
+
+Coût de passation de commande:
+* frais de transports
+* frais de prépa des stocks
+* frais de suivi des commandes
+* coût salarial
+
+Coût de possession du stock:
+* coût du local de stockage
+* coût salarial (suivi du stock)
+* Energie
+* Surveillance
+* Vols, dégradations, péremptions
+* coût financier (prêts ...)
+
+Un euro d'investissement suppose un euro de financement. => cet euro coûte de l'argent (intérets...)
+Plus de coût de passassion baisse, plus le coût de possession augmente.
+
+F: coût de passation d'une commande
+N: Nombre de commandes dans l'année
+Q: quantité totale nécessaire dans l'année
+t: coût de possession du stock (en %)
+c =cout d'achat d'un produit (en €)
+
+
+| Coût de passation de commande | + | coût de possession du stock |
+|-------------------------------|---|-----------------------------|
+| N * F                         | + | Q/(2N)*c*t                  |
+	
+N = sqrt(Qct/(2F))
+
+---
+> arrivé en retard d'une heure à cause du D
+> important, à rattraper
+> quoique apparement non
+
+
+abbréviations: 
+* VAN = Valeur ajustée nette 
+* Inv = investissement
+* IP / I.P = Indice de profitabilité
+* TIR = Taux de rentabilité interne
+
+
+|               | 1          | 2             | 3             | 4             | 5             |
+|---------------|------------|---------------|---------------|---------------|---------------|
+| CF            | 26000      | 26000         | 26000         | 26000         | 26000         |
+| actualisation | 26000/1.13 | 26000/(1.13)² | 26000/(1.13)³ | 26000/(1.13)⁴ | 26000/(1.13)⁵ |
+|               | = 23008    | = 20362       | =18019        | =15946        | =14111        |
+
+
+Somme(CF actualisés) = 91448
+
+VAN = 91448 - 90000 = 1448 > 0
+
+Donc cet investissement rapporte.
+
+Indice de Profitabilité:
+
+I.P = 1+ VAN/Investissement = 1.016 > 1
+
+Cette investissement est profitable.
+
+
+Taux interne de rentabilité:
+VAN = Somme(CF_j/(1+i)^j, j de 1 à n)
+Le TIR est i TQ VAN = Inv
+On calcule i par interpolation linéaire
+
+Ex (cf tableau précédent):
+
+van(i) = somme(2600/(1+i)^j, j de 1 à 5)=2600 * (1-1/(1+i)⁵)/(1-1/(1+i))
+
+Bon apparement TIR = 0.137
+
+
+---
+La formule de Wilson indique le nombre de livraisons qu'il faut faire dans l'année pour obtenir le coût des appros le plus faible possible.
+On en déduiera la qté livrée ainsi que la cadence de livraison.
+(cadence = 12mois/N)
+Mais les besoins des entreprises sont rarement régulières dans le temps.
+On fera donc soit des livraisons quantités constantes, mais délais variables, soit des livraisons à délais constants, mais quantités variables.

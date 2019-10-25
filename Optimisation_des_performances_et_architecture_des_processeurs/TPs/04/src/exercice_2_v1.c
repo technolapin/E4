@@ -66,7 +66,7 @@ main(void)
 	 + mat_a->matrix[i+1][j]
 	 + mat_a->matrix[i-1][j+1]
 	 + mat_a->matrix[i][j+1]
-	 + mat_a->matrix[i+1][j+1]);
+	 + mat_a->matrix[i+1][j+1])/9;
     }
   }
 

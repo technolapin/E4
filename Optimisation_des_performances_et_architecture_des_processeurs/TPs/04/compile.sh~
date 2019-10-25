@@ -1,5 +1,0 @@
-mkdir target
-mkdir vg_logs
-gcc -g src/exercice_1_v1.c -o target/exo1v1.out
-gcc -g src/exercice_1_v2.c -o target/exo1v2.out
-gcc -g src/exercice_1_v3.c -o target/exo1v3.out
