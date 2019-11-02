@@ -29,6 +29,7 @@
 #include "opencv2/highgui/highgui.hpp"
 
 #include  "sobel.cpp"
+#include  "median.cpp"
 
 /* 
  * Définition des "namespace" pour évite cv::, std::, ou autre
@@ -75,6 +76,7 @@ int main () {
 //
   Mat3b frame; // couleur
   Mat frame1; // niveau de gris 
+  Mat frame1_base; // niveau de gris 
   Mat frame_gray; // niveau de gris 
   Mat grad_x;
   Mat grad_y;
@@ -102,14 +104,15 @@ int main () {
 // 
   //cvNamedWindow("Video input", WINDOW_AUTOSIZE);
   //cvNamedWindow("Video gray levels", WINDOW_AUTOSIZE);
-  //cvNamedWindow("Video Mediane", WINDOW_AUTOSIZE);
+  cvNamedWindow("Video Mediane base", WINDOW_AUTOSIZE);
+  cvNamedWindow("Video Mediane custom", WINDOW_AUTOSIZE);
   cvNamedWindow("Video Edge detection", WINDOW_AUTOSIZE);
 // placement arbitraire des  fenêtre sur écran 
 // sinon les fenêtres sont superposée l'une sur l'autre
   //cvMoveWindow("Video input", 10, 30);
   //cvMoveWindow("Video gray levels", 800, 30);
-  //cvMoveWindow("Video Mediane", 10, 500);
-  //cvMoveWindow("Video Edge detection", 800, 500);
+  cvMoveWindow("Video Mediane custom", 10, 0);
+  cvMoveWindow("Video Edge detection", 800, 0);
   
   
 // --------------------------------------------------
@@ -135,12 +138,12 @@ int main () {
 { 
  gettimeofday(&start, NULL);
  #endif
- medianBlur(frame_gray, frame1, k);
+ medianBlur(frame_gray, frame1_base, k);
+ median_blur(frame_gray, frame1, k);
  #ifdef PROFILE 
  gettimeofday(&end, NULL);
  double e = ((double) end.tv_sec * 1000000.0 + (double) end.tv_usec);
  double s = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
- //printf("MEDIAN_BLUR %d : %lf\n", k, (e - s));
 }
  #endif
     
@@ -167,7 +170,8 @@ int main () {
     
     //imshow("Video input",frame);
     //imshow("Video gray levels",frame_gray);
-    //imshow("Video Mediane",frame1);    
+    imshow("Video Mediane custom",frame1);    
+    imshow("Video Mediane base",frame1_base);    
     imshow("Video Edge detection",grad);  
     
     

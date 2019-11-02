@@ -82,6 +82,7 @@ sobel_opt(cv::InputArray src,
   
 }
 */
+
 // moyenne: 17646
 void
 sobel(cv::InputArray src,
@@ -94,9 +95,6 @@ sobel(cv::InputArray src,
       double delta=0,
       int borderType=cv::BORDER_DEFAULT)
 {
-
-  cv::MatIterator_<ushort> it;
-  
   auto mat_in = src.getMat();
   auto el_size = 1;
   auto h = mat_in.size[0];
@@ -124,8 +122,7 @@ sobel(cv::InputArray src,
   dst.assign(mat_out);
   
 }
-
-// 16513
+// 16280
 void
 sobel_opt(cv::InputArray src,
 	  cv::OutputArray dst,
@@ -155,16 +152,39 @@ sobel_opt(cv::InputArray src,
   
   for  (int i = w+1; i < length-w; ++i)
   {
-      
+    auto gauche = i-1;
+    auto droite = i+1;
+    
     ptr_out[i] = (
-		  abs(2*(ptr_in[i+1] - ptr_in[i-1])
+		  abs((ptr_in[i+1] - ptr_in[i-1])*2
 		      + ptr_avant[i+1] - ptr_avant[i-1]
 		      + ptr_apres[i+1] - ptr_apres[i-1]) +
 	
-		  abs(2*(ptr_apres[i] - ptr_avant[i])
+		  abs((ptr_apres[i] - ptr_avant[i])*2
 		      + ptr_apres[i-1] - ptr_avant[i-1]
 		      + ptr_apres[i+1] - ptr_avant[i+1])
 		  )/2;
+    
+    /* moins bien
+    auto g0 = ptr_avant[gauche];
+    auto g1 = ptr_in[gauche];
+    auto g2 = ptr_apres[gauche];
+    auto c0 = ptr_avant[i];
+    auto c1 = ptr_in[i];
+    auto c2 = ptr_apres[i];
+    auto d0 = ptr_avant[droite];
+    auto d1 = ptr_in[droite];
+    auto d2 = ptr_apres[droite];
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+	
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    */
   }
   dst.assign(mat_out);
   
