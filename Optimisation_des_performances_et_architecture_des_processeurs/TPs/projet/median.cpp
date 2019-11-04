@@ -1,3 +1,4 @@
+#include<queue>
 
 int
 min(int a, int b)
@@ -19,37 +20,61 @@ max(int a, int b)
 
 
 
-void
-sort(std::vector<ushort>& vec, int start, int end)
+#include <algorithm>
+
+
+int median5(std::vector<ushort> & A, int s)
 {
-  if (start+1 < end)
-  {
-    int mid = (start+end)/2;
-    sort(vec, start, mid);
-    sort(vec, mid, end);
+    if ( A.size() <= s + 5 )
+        return A[s];
+   
+    std::vector<ushort> B;
+    for (int i=s;i < s + 5; i++)
+        B.push_back(A[i]);
+   
+    sort ( B.begin(), B.end() );
+    return B[2];
+}
 
-    for (int i = start; i < end; i++)
-    {
-      if (vec[i] > vec[mid])
-      {
-	ushort val = vec[mid];
-	for (int j = mid; j > i; --j)
-	{
-	  vec[j] = vec[j-1];
-	}
-	vec[i] = val;
-	++mid;
-	if (mid == end)
-	  break;
-
-      }
+int computeKSmallest( std::vector<ushort> & A, int k )
+{    
+    int n = A.size();
+   
+    if (n == 1) {
+        if ( k == 0) return A[0];
+        else std::cout << "Error somewhere!\n";
     }
-  }
+   
+    std::vector<ushort> C;
+   
+    for (int i=0; i < A.size(); i+=5)
+        C.push_back( median5( A, i ) );  
+   
+    ushort approximate_median = computeKSmallest( C, C.size() / 2 );    
+   
+    std::vector<ushort> A_small, A_big;
+   
+    for (int i=0; i < n; i++) {
+        if ( A[i] < approximate_median ) A_small.push_back( A[i] );
+        else if (A[i] > approximate_median)  A_big.push_back( A[i] );
+    }
+   
+    if ( k+1 <= A_small.size() ) return computeKSmallest( A_small, k );
+    if ( k+1 > n - A_big.size() ) return computeKSmallest( A_big, k - ( n - A_big.size() ) );
+    else return approximate_median;
 }
 
 
+ushort
+median(std::vector<ushort> & vec)
+{
+  return computeKSmallest(vec, vec.size()/2);
+}
+
+// juste pour tester un peu le sort
+/*
 void
-test()
+test_sort()
 {
   auto vec = std::vector<ushort>();
 
@@ -69,6 +94,9 @@ test()
   std::cout << std::endl;
   assert(false);
 }
+*/
+
+
 
 void
 median_blur(cv::InputArray src,
@@ -89,14 +117,12 @@ median_blur(cv::InputArray src,
   auto neighborhood = std::vector<ushort>(kernel_size, 0);
   int neigh_size = 0;
   
-  int sum = 0;
   
   for (int i = 0; i < w; i++)
   {
     for (int j = 0; j < h; j++)
     {
       neigh_size = 0;
-      sum = 0;
       for (int x = i; x < min(w, kernel+i); x++)
       {
 	for (int y = j; y < min(h, kernel+j); y++)
@@ -106,9 +132,10 @@ median_blur(cv::InputArray src,
 	}
       }
 
-      sort(neighborhood, 0, kernel_size);
-      
-      ptr_out[i+j*w] = neighborhood[kernel_size/2];
+      //sort(neighborhood, 0, kernel_size);
+      //      ptr_out[i+j*w] = neighborhood[kernel_size/2];
+
+      ptr_out[i+j*w] = median(neighborhood);
     }
   }
   std::cout << "PIZZA" << std::endl;
@@ -117,12 +144,13 @@ median_blur(cv::InputArray src,
 
 }
 
-
+/*
 void
 median_blur_opt(cv::InputArray src,
 		cv::OutputArray dst,
 		int kernel)
 {
+  test_median();
   auto mat_in = src.getMat();
   auto el_size = 1;
   auto h = mat_in.size[0];
@@ -132,26 +160,38 @@ median_blur_opt(cv::InputArray src,
 
   auto ptr_in = mat_in.data;
   auto ptr_out = mat_out.data;
-  int sum = 0;
-
-  for (int i = 0; i < w; i++)
+  int kernel_size = kernel*kernel;
+  
+  int neigh_size = 0;
+  
+  
+  for (int j = 0; j < h; j++)
   {
-    for (int j = 0; j < h; j++)
+    auto neighborhood = std::vector<short>();
+    for (int i = 0; i < kernel; i++)
     {
-      sum = 0;
-      for (int x = i; x < min(w, kernel+i); x++)
+      for (int k = j; k < j+kernel; ++k)
       {
-	for (int y = j; y < min(h, kernel+j); y++)
-	{
-	    sum+=ptr_in[y*w+x];
-	}
+	neighborhood.push_back(ptr_in[i+k*w]);
       }
-      ptr_out[i+j*w] = sum/kernel/kernel;
+    }
+    for (int i = 0; i < w; i++)
+    {
+      for (int k = j; k < j+kernel; ++k)
+      {
+	neighborhood.pop();
+	neighborhood.push(ptr_in[i+k*w]);
+      }
+
+      //sort(neighborhood, 0, kernel_size);
+      
+      ptr_out[i+j*w] = neighborhood.front();
     }
   }
+  std::cout << "PIZZA" << std::endl;
   
   dst.assign(mat_out);
 
-
   
 }
+*/
