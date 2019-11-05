@@ -134,26 +134,41 @@ int main () {
  int k = 1;  
  #ifdef PROFILE
  struct timeval start, end;
+ double starting_date;
+ double e;
+ double s;
  for (k;k<n;k+=2)
-{ 
- gettimeofday(&start, NULL);
- #endif
- medianBlur(frame_gray, frame1_base, k);
- median_blur(frame_gray, frame1, k);
- #ifdef PROFILE 
- gettimeofday(&end, NULL);
- double e = ((double) end.tv_sec * 1000000.0 + (double) end.tv_usec);
- double s = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
-}
+ { 
+#endif
+   printf("MEDIAN k=%d\n", k);
+   gettimeofday(&start, NULL);
+   medianBlur(frame_gray, frame1_base, k);
+   gettimeofday(&end, NULL);
+   e = ((double) end.tv_sec * 1000000.0 + (double) end.tv_usec);
+   s = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
+   printf("       OPENCV: %0.lf µs\n", e-s);
+
+
+   starting_date = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
+   gettimeofday(&start, NULL);
+   //medianBlur(frame_gray, frame1, k);
+   median_blur(frame_gray, frame1, k);
+#ifdef PROFILE 
+   gettimeofday(&end, NULL);
+   e = ((double) end.tv_sec * 1000000.0 + (double) end.tv_usec);
+   s = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
+   printf("       CUSTOM: %0.lf µs\n", e-s);
+ }
+ printf("MEDIAN TOTAL TIME: %0.lf µs\n\n", e-starting_date);
  #endif
     
  gettimeofday(&start, NULL);
  sobel_opt( frame1, grad, ddepth, 1, 0, 3, scale, delta, BORDER_DEFAULT );
  gettimeofday(&end, NULL);
- double e = ((double) end.tv_sec * 1000000.0 + (double) end.tv_usec);
- double s = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
+ e = ((double) end.tv_sec * 1000000.0 + (double) end.tv_usec);
+ s = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
  sobel_time_sum+= (e-s);
-   printf("SOBEL iteration: %d    time: %0.lf µs    mean time: %0.lf µs\n", iter_count, (e - s), sobel_time_sum/((double) iter_count));
+   printf("SOBEL iteration: %d    time: %0.lf µs    mean time: %0.lf µs\n\n", iter_count, (e - s), sobel_time_sum/((double) iter_count));
 
 
     // ------------------------------------------------
