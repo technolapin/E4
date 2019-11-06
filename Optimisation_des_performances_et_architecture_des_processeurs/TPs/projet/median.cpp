@@ -1,4 +1,18 @@
-#include<queue>
+#include <algorithm>
+#include<vector>
+
+
+#include <time.h>
+#include <sys/time.h>
+
+
+#define MEDIAN_TRESHOLD 5
+
+
+double e;
+double s;
+struct timeval start, end;
+
 
 int
 min(int a, int b)
@@ -20,7 +34,8 @@ max(int a, int b)
 
 
 
-#include <algorithm>
+
+
 
 
 int median5(std::vector<ushort> & A, int s)
@@ -37,27 +52,84 @@ int median5(std::vector<ushort> & A, int s)
 }
 
 int computeKSmallest( std::vector<ushort> & A, int k )
-{    
+{
     int n = A.size();
-   
-    if (n == 1) {
+
+    /*
+     * Steps 1 and 3 are the slowest
+     */
+
+    if (n <= MEDIAN_TRESHOLD) {
+      /*
         if ( k == 0) return A[0];
         else std::cout << "Error somewhere!\n";
+      */
+      sort(A.begin(), A.end());
+      return A[k];
     }
    
     std::vector<ushort> C;
-   
+
+    // à peine plus lent, mais quand même significatif
+    /*
     for (int i=0; i < A.size(); i+=5)
-        C.push_back( median5( A, i ) );  
-   
+      C.push_back( median5( A, i ) );
+    */      
+
+
+    /*
+    gettimeofday(&start, NULL);
+    s = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
+    */
+
+    for (auto it = A.begin(); it+5 < A.end(); it+=5)
+    {
+      sort(it, it+5);
+      C.push_back(it[2]);
+    }
+    /*
+    gettimeofday(&end, NULL);
+    e = ((double) end.tv_sec * 1000000.0 + (double) end.tv_usec);
+
+    printf("FIRST STEP: %0.lf\n", e-s);
+    */
+
+    /*    
+    gettimeofday(&start, NULL);
+    s = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
+    */
     ushort approximate_median = computeKSmallest( C, C.size() / 2 );    
-   
+
+    /*
+    gettimeofday(&end, NULL);
+    e = ((double) end.tv_sec * 1000000.0 + (double) end.tv_usec);
+
+    printf("SECOND STEP: %0.lf\n", e-s);
+    */
+
+
+
+
+
+    /*
+    gettimeofday(&start, NULL);
+    s = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
+    */
     std::vector<ushort> A_small, A_big;
    
     for (int i=0; i < n; i++) {
         if ( A[i] < approximate_median ) A_small.push_back( A[i] );
         else if (A[i] > approximate_median)  A_big.push_back( A[i] );
     }
+
+    /*
+    gettimeofday(&end, NULL);
+    e = ((double) end.tv_sec * 1000000.0 + (double) end.tv_usec);
+
+    printf("THIRD STEP: %0.lf\n", e-s);
+    */
+
+    
    
     if ( k+1 <= A_small.size() ) return computeKSmallest( A_small, k );
     if ( k+1 > n - A_big.size() ) return computeKSmallest( A_big, k - ( n - A_big.size() ) );
@@ -132,25 +204,20 @@ median_blur(cv::InputArray src,
 	}
       }
 
-      //sort(neighborhood, 0, kernel_size);
-      //      ptr_out[i+j*w] = neighborhood[kernel_size/2];
-
       ptr_out[i+j*w] = median(neighborhood);
     }
   }
-  std::cout << "PIZZA" << std::endl;
   
   dst.assign(mat_out);
 
 }
 
-/*
 void
 median_blur_opt(cv::InputArray src,
 		cv::OutputArray dst,
 		int kernel)
 {
-  test_median();
+  
   auto mat_in = src.getMat();
   auto el_size = 1;
   auto h = mat_in.size[0];
@@ -161,37 +228,40 @@ median_blur_opt(cv::InputArray src,
   auto ptr_in = mat_in.data;
   auto ptr_out = mat_out.data;
   int kernel_size = kernel*kernel;
+  std::vector<ushort> neighborhood;
+
+
   
-  int neigh_size = 0;
-  
-  
-  for (int j = 0; j < h; j++)
+  for (int i = 0; i < w-kernel; i++)
   {
-    auto neighborhood = std::vector<short>();
-    for (int i = 0; i < kernel; i++)
+    neighborhood = std::vector<ushort>(0, kernel_size);
+    for (int kj = 0; kj < kernel; ++kj)
     {
-      for (int k = j; k < j+kernel; ++k)
+      for (int ki = i; ki < i+kernel; ++ki)
       {
-	neighborhood.push_back(ptr_in[i+k*w]);
+	neighborhood.push_back(ptr_in[ki+kj*w]);
       }
     }
-    for (int i = 0; i < w; i++)
-    {
-      for (int k = j; k < j+kernel; ++k)
-      {
-	neighborhood.pop();
-	neighborhood.push(ptr_in[i+k*w]);
-      }
 
-      //sort(neighborhood, 0, kernel_size);
-      
-      ptr_out[i+j*w] = neighborhood.front();
+    int line_pointer = kernel-1; // to cicle the vec
+    /*
+    std::cout << kernel << std::endl;
+    std::cout << kernel_size << std::endl;
+    std::cout << neighborhood.size() << std::endl;
+    */
+    for (int j = 0; j < h-kernel; j++)
+    {
+      for (int ki = i; ki < i+kernel; ++ki)
+      {
+	auto index = ki-i+((j+kernel-1)%kernel)*kernel;
+	//std::cout << "index " << index << std::endl; 
+	neighborhood[index] = ptr_in[ki+(j+kernel-1)*w];
+      }
+      line_pointer++;
+      ptr_out[i+j*w] = median(neighborhood);
     }
   }
-  std::cout << "PIZZA" << std::endl;
   
   dst.assign(mat_out);
 
-  
 }
-*/

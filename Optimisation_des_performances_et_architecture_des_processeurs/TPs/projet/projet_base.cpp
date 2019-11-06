@@ -141,23 +141,37 @@ int main () {
  { 
 #endif
    printf("MEDIAN k=%d\n", k);
+
+   /*
    gettimeofday(&start, NULL);
    medianBlur(frame_gray, frame1_base, k);
    gettimeofday(&end, NULL);
    e = ((double) end.tv_sec * 1000000.0 + (double) end.tv_usec);
    s = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
    printf("       OPENCV: %0.lf µs\n", e-s);
+   */
 
+   gettimeofday(&start, NULL);
+   median_blur(frame_gray, frame1_base, k);
+   gettimeofday(&end, NULL);
+   e = ((double) end.tv_sec * 1000000.0 + (double) end.tv_usec);
+   s = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
+   printf("       NONOPT: %0.lf µs\n", e-s);
+   auto nonopt = e-s;
 
+   
    starting_date = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
    gettimeofday(&start, NULL);
    //medianBlur(frame_gray, frame1, k);
-   median_blur(frame_gray, frame1, k);
+   median_blur_opt(frame_gray, frame1, k);
 #ifdef PROFILE 
    gettimeofday(&end, NULL);
    e = ((double) end.tv_sec * 1000000.0 + (double) end.tv_usec);
    s = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
    printf("       CUSTOM: %0.lf µs\n", e-s);
+   auto opt = e-s;
+   printf("       => ratio: %0.lf %% faster\n", (nonopt-opt)/nonopt*100);
+   
  }
  printf("MEDIAN TOTAL TIME: %0.lf µs\n\n", e-starting_date);
  #endif
