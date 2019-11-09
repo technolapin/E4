@@ -408,7 +408,7 @@ aux_median_blur_opt(unsigned char* ptr_in,
   auto kernel_left = kernel-kernel_right; // le nombre de pixels à gauche
 
   for (int cell_x = 0; cell_x < kernel_left; ++cell_x)
-    for(int cell_y = kernel_left; cell_y < h-kernel_right; cell_y++) // pour le bord de gauche
+    for(int cell_y = 0; cell_y < h; cell_y++) // pour le bord de gauche
     {
       auto neighborhood = std::vector<ushort>();
 
@@ -420,7 +420,7 @@ aux_median_blur_opt(unsigned char* ptr_in,
 
     }
   for (int cell_x = w-kernel_right; cell_x < w; ++cell_x)
-    for(int cell_y = kernel_left; cell_y < h-kernel_right; cell_y++) // pour le bord de droite
+    for(int cell_y = 0; cell_y < h; cell_y++) // pour le bord de droite
     {
       auto neighborhood = std::vector<ushort>();
 
@@ -431,43 +431,53 @@ aux_median_blur_opt(unsigned char* ptr_in,
       ptr_out[cell_x+cell_y*w] = median_opt(neighborhood);
 
     }
-
+  std::vector<ushort> neighborhood;
   // traîtement principal
   for (int cell_x = kernel_left; cell_x < w-kernel_right; ++cell_x) // traîtement principal
   {
-    auto neighborhood = std::vector<ushort>(kernel_size, 0);
-
-    for (int ker_y = 0; ker_y < kernel_right; ++ker_y) // pour le bord en haut
+    neighborhood = std::vector<ushort>(kernel_size, 0);
+    for (int ker_y = -kernel_left; ker_y < kernel_right; ++ker_y) // pour le bord en haut
     {
       for (int ker_x = cell_x-kernel_left; ker_x < cell_x+kernel_right; ++ker_x)
       {
 	int index = ker_x+ker_y*w;
 	int vec_index =
 	  (ker_x - cell_x + kernel_left) // va de 0 jusqu'à kernel (prouvé)
-	  + ker_y*kernel;
-      
-	neighborhood[vec_index] = ptr_in[index];
+	  + (ker_y+kernel_left)*kernel;
+	/*
+	std::cout << "index: " << index
+		  << "    vec_index: " << vec_index << "/" << neighborhood.size() << std::endl;
+	*/
+	neighborhood[vec_index] = *(ptr_in+index);
       }
     }
     
-    for (int cell_y = kernel_left; cell_y < h-kernel_right; ++cell_y)
+    for (int cell_y = 0; cell_y < h; ++cell_y)
     {
+      /*
+      std::cout << "w " << w
+       	      << "  h " << h
+     	      << "  cell_x " << cell_x
+       	      << "  cell_y " << cell_y << std::endl;
+      std::cout << "real_size " << neighborhood.size()
+      		<< "  kernel " << kernel << std::endl;
+      */
       int cell_index = cell_x+cell_y*w;
       for (int ker_x = cell_x-kernel_left; ker_x < cell_x+kernel_right; ++ker_x)
       {
-	int ker_y = (cell_y+kernel_right-1); // la ligne à ajouter
-	int index = ker_x+ker_y*w;
-	int vec_index =
-	  (ker_x - cell_x + kernel_left) // va de 0 jusqu'à kernel (prouvé)
-	  + (ker_y%kernel)*kernel;
-      
-	neighborhood[vec_index] = ptr_in[index];
+     	int ker_y = (cell_y+kernel_right-1); // la ligne à ajouter
+      	int index = ker_x+ker_y*w;
+     	int vec_index =
+     	  (ker_x - cell_x + kernel_left) // va de 0 jusqu'à kernel (prouvé)
+     	  + (ker_y%kernel)*kernel;
+            	
+       	
+     	neighborhood[vec_index] = ptr_in[index];
       }
-
+      
       ptr_out[cell_index] = median_opt(neighborhood);
       
     }
-
   }
   
 
@@ -509,11 +519,21 @@ median_blur_opt_thread(cv::InputArray src,
 		  ptr_out+displacement,
 		  kernel,
 		  w,
-		  (h-kernel)/n_threads);
+		  min(h/n_threads, h-displacement/w-kernel/2-1));
     
     threads.push_back(std::move(t));
   }
-  
+  /*
+  int displacement = (n_threads-1)*(w*h/n_threads)+(kernel-kernel/2-1)*w;
+  std::cout << "UwU "<< displacement/w << "/"<<h<<std::endl;
+  std::thread tuturu(aux_median_blur_opt,
+		ptr_in+displacement,
+		ptr_out+displacement,
+		kernel,
+		w,
+		h-displacement-kernel);
+  threads.push_back(std::move(tuturu));
+  */
   for (int i = 0; i < n_threads; ++i)
   {
     threads[i].join();
@@ -532,6 +552,15 @@ aux_median_blur_opt(ptr_in,
   dst.assign(mat_out);
 
 }
+
+
+
+
+
+
+
+
+
 
 void
 median_blur_opt(cv::InputArray src,
