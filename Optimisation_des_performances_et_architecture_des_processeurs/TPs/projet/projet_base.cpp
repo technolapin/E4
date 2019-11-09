@@ -102,14 +102,14 @@ int main () {
 // Création des fenêtres pour affichage des résultats
 // vous pouvez ne pas les utiliser ou ajouter selon ces exemple
 // 
-  //cvNamedWindow("Video input", WINDOW_AUTOSIZE);
+  cvNamedWindow("Video input", WINDOW_AUTOSIZE);
   //cvNamedWindow("Video gray levels", WINDOW_AUTOSIZE);
   cvNamedWindow("Video Mediane base", WINDOW_AUTOSIZE);
   cvNamedWindow("Video Mediane custom", WINDOW_AUTOSIZE);
   cvNamedWindow("Video Edge detection", WINDOW_AUTOSIZE);
 // placement arbitraire des  fenêtre sur écran 
 // sinon les fenêtres sont superposée l'une sur l'autre
-  //cvMoveWindow("Video input", 10, 30);
+  cvMoveWindow("Video input", 10, 30);
   //cvMoveWindow("Video gray levels", 800, 30);
   cvMoveWindow("Video Mediane custom", 10, 0);
   cvMoveWindow("Video Edge detection", 800, 0);
@@ -163,12 +163,12 @@ int main () {
    starting_date = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
    gettimeofday(&start, NULL);
    //medianBlur(frame_gray, frame1, k);
-   median_blur_opt(frame_gray, frame1, k);
-#ifdef PROFILE 
+   median_blur_opt_thread(frame_gray, frame1, k);
+#ifdef PROFILE
    gettimeofday(&end, NULL);
    e = ((double) end.tv_sec * 1000000.0 + (double) end.tv_usec);
    s = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
-   printf("       CUSTOM: %0.lf µs\n", e-s);
+   printf("       CUSTOM: %0.lf µs  (%2.lf ms)\n", e-s, (e-s)/1000);
    auto opt = e-s;
    printf("       => ratio: %0.lf %% faster\n", (nonopt-opt)/nonopt*100);
    
@@ -197,11 +197,11 @@ int main () {
     //    resize(frame_gray, frame_gray, Size(), 0.5, 0.5);
     //    resize(grad, grad, Size(), 0.5, 0.5);
     
-    //imshow("Video input",frame);
+    imshow("Video input",frame);
     //imshow("Video gray levels",frame_gray);
     imshow("Video Mediane custom",frame1);    
-    imshow("Video Mediane base",frame1_base);    
-    imshow("Video Edge detection",grad);  
+    //imshow("Video Mediane base",frame1_base);    
+    //imshow("Video Edge detection",grad);  
     
     
     key=waitKey(5);

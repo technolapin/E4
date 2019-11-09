@@ -1,0 +1,84 @@
+/*
+ * Fichier source pour le projet d'unité
+ *  INF-4101C
+ *---------------------------------------------------------------------------------------------------
+ * Pour compiler : g++ `pkg-config --cflags opencv` projet.cpp `pkg-config --libs opencv` -o projet
+ *---------------------------------------------------------------------------------------------------
+ * auteur : Eva Dokladalova 09/2015
+ * modification : Eva Dokladalova 10/2017
+ */
+
+
+/* 
+ * Libraries stantards 
+ *
+ */ 
+#include <stdio.h>
+#include <stdlib.h>
+
+/* 
+ * Libraries OpenCV "obligatoires" 
+ *
+ */
+
+
+#include "opencv2/highgui/highgui_c.h"
+#include "opencv2/core/cvstd.hpp"
+#include "opencv2/opencv.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
+
+#include <time.h>
+#include <sys/time.h>
+
+
+#include  "sobel.cpp"
+#include  "median.cpp"
+
+using namespace std;
+using namespace cv;
+using std::cout;
+
+#define VAR_KERNEL
+#define N_ITER 100
+
+
+
+
+int main ()
+{
+
+  
+  VideoCapture cap(0); // le numéro 0 indique le point d'accès à la caméra 0 => /dev/video0
+  if(!cap.isOpened()){
+    cout << "Errore"; return -1;
+  }
+  Mat3b frame; // couleur
+  Mat frame1; // niveau de gris 
+  Mat frame1_base; // niveau de gris 
+  Mat frame_gray; // niveau de gris 
+  Mat grad_x;
+  Mat grad_y;
+  Mat abs_grad_y;
+  Mat abs_grad_x;
+  Mat grad;
+
+  int ddepth = CV_16S;
+  int scale = 1;
+  int delta = 0;	
+
+
+  
+  for (int iter_count = 0; iter_count < N_ITER; ++iter_count)
+  {
+    std::cout << "iter " << iter_count << "/" << N_ITER << std::endl;
+    cap.read(frame);
+    
+    cvtColor(frame, frame_gray, CV_BGR2GRAY);
+    
+    sobel_opt( frame_gray, grad, ddepth, 1, 0, 3, scale, delta, BORDER_DEFAULT );
+
+  }
+}
+
+    

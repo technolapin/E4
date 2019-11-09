@@ -83,7 +83,7 @@ sobel_opt(cv::InputArray src,
 }
 */
 
-// moyenne: 17646
+// moyenne: 17646 - 18733 µs
 void
 sobel(cv::InputArray src,
       cv::OutputArray dst,
@@ -122,7 +122,7 @@ sobel(cv::InputArray src,
   dst.assign(mat_out);
   
 }
-// 16280
+// 14828 µs
 void
 sobel_opt(cv::InputArray src,
 	  cv::OutputArray dst,
@@ -137,35 +137,21 @@ sobel_opt(cv::InputArray src,
   
   auto mat_in = src.getMat();
   auto el_size = 1;
-  auto h = mat_in.size[0];
-  auto w = mat_in.size[1];
-  auto mat_out = cv::Mat(h, w, mat_in.type());
+  auto h = mat_in.size[0]; // height
+  auto w = mat_in.size[1]; // width
+  auto mat_out = cv::Mat(h, w, mat_in.type()); // tableau de sortie
 
   auto length = h*w*el_size;
 
-  auto ptr_in = mat_in.data;
-  auto ptr_out = mat_out.data;
-  auto ptr_avant = ptr_in - w;
-  auto ptr_apres = ptr_in + w;
+  auto ptr_in = mat_in.data; // pointeur vers les données du tableau d'entrée
+  auto ptr_out = mat_out.data; // pointeur vers les données du tableau de sortie
+  auto ptr_avant = ptr_in - w; // ligne d'avant dans tableau d'entrée
+  auto ptr_apres = ptr_in + w; // ligne d'après dans tableau de sortie
 
-  
-  
-  for  (int i = w+1; i < length-w; ++i)
-  {
-    auto gauche = i-1;
+  int i = w+1;
+     auto gauche = i-1;
     auto droite = i+1;
-    
-    ptr_out[i] = (
-		  abs((ptr_in[i+1] - ptr_in[i-1])*2
-		      + ptr_avant[i+1] - ptr_avant[i-1]
-		      + ptr_apres[i+1] - ptr_apres[i-1]) +
 	
-		  abs((ptr_apres[i] - ptr_avant[i])*2
-		      + ptr_apres[i-1] - ptr_avant[i-1]
-		      + ptr_apres[i+1] - ptr_avant[i+1])
-		  )/2;
-    
-    /* moins bien
     auto g0 = ptr_avant[gauche];
     auto g1 = ptr_in[gauche];
     auto g2 = ptr_apres[gauche];
@@ -175,7 +161,23 @@ sobel_opt(cv::InputArray src,
     auto d0 = ptr_avant[droite];
     auto d1 = ptr_in[droite];
     auto d2 = ptr_apres[droite];
-    ptr_out[i] = (
+  
+  for  ( i = w+1; i < length-w; ++i)
+  {
+    gauche = i-1;
+    droite = i+1;
+    
+    /*ptr_out[i] = (
+		  abs((ptr_in[i+1] - ptr_in[i-1])*2
+		      + ptr_avant[i+1] - ptr_avant[i-1]
+		      + ptr_apres[i+1] - ptr_apres[i-1]) +
+	
+		  abs((ptr_apres[i] - ptr_avant[i])*2
+		      + ptr_apres[i-1] - ptr_avant[i-1]
+		      + ptr_apres[i+1] - ptr_avant[i+1])
+		  )/2;*/
+
+   ptr_out[i] = (
 		  abs((d1 - g1)*2
 		      + d0 - g0
 		      + d2 - g2) +
@@ -184,7 +186,18 @@ sobel_opt(cv::InputArray src,
 		      + g2 - g0
 		      + g2 - g0)
 		  )/2;
-    */
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    
   }
   dst.assign(mat_out);
   

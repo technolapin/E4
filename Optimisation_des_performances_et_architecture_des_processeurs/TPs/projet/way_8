@@ -1,0 +1,123 @@
+==70979== Cachegrind, a cache and branch-prediction profiler
+==70979== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==70979== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==70979== Command: ./a.out
+==70979== 
+--70979-- warning: L3 cache found, using its data for the LL simulation.
+[ WARN:0] global /build/opencv/src/opencv-4.1.2/modules/videoio/src/cap_gstreamer.cpp (933) open OpenCV | GStreamer warning: Cannot query video position: status=0, value=-1, duration=-1
+iter 0/100
+iter 1/100
+iter 2/100
+iter 3/100
+iter 4/100
+iter 5/100
+iter 6/100
+iter 7/100
+iter 8/100
+iter 9/100
+iter 10/100
+iter 11/100
+iter 12/100
+iter 13/100
+iter 14/100
+iter 15/100
+iter 16/100
+iter 17/100
+iter 18/100
+iter 19/100
+iter 20/100
+iter 21/100
+iter 22/100
+iter 23/100
+iter 24/100
+iter 25/100
+iter 26/100
+iter 27/100
+iter 28/100
+iter 29/100
+iter 30/100
+iter 31/100
+iter 32/100
+iter 33/100
+iter 34/100
+iter 35/100
+iter 36/100
+iter 37/100
+iter 38/100
+iter 39/100
+iter 40/100
+iter 41/100
+iter 42/100
+iter 43/100
+iter 44/100
+iter 45/100
+iter 46/100
+iter 47/100
+iter 48/100
+iter 49/100
+iter 50/100
+iter 51/100
+iter 52/100
+iter 53/100
+iter 54/100
+iter 55/100
+iter 56/100
+iter 57/100
+iter 58/100
+iter 59/100
+iter 60/100
+iter 61/100
+iter 62/100
+iter 63/100
+iter 64/100
+iter 65/100
+iter 66/100
+iter 67/100
+iter 68/100
+iter 69/100
+iter 70/100
+iter 71/100
+iter 72/100
+iter 73/100
+iter 74/100
+iter 75/100
+iter 76/100
+iter 77/100
+iter 78/100
+iter 79/100
+iter 80/100
+iter 81/100
+iter 82/100
+iter 83/100
+iter 84/100
+iter 85/100
+iter 86/100
+iter 87/100
+iter 88/100
+iter 89/100
+iter 90/100
+iter 91/100
+iter 92/100
+iter 93/100
+iter 94/100
+iter 95/100
+iter 96/100
+iter 97/100
+iter 98/100
+iter 99/100
+==70979== 
+==70979== I   refs:      8,793,241,226
+==70979== I1  misses:        1,051,376
+==70979== LLi misses:          220,689
+==70979== I1  miss rate:          0.01%
+==70979== LLi miss rate:          0.00%
+==70979== 
+==70979== D   refs:      2,534,797,210  (1,553,314,129 rd   + 981,483,081 wr)
+==70979== D1  misses:      173,058,283  (  131,297,153 rd   +  41,761,130 wr)
+==70979== LLd misses:       25,723,689  (   13,341,636 rd   +  12,382,053 wr)
+==70979== D1  miss rate:           6.8% (          8.5%     +         4.3%  )
+==70979== LLd miss rate:           1.0% (          0.9%     +         1.3%  )
+==70979== 
+==70979== LL refs:         174,109,659  (  132,348,529 rd   +  41,761,130 wr)
+==70979== LL misses:        25,944,378  (   13,562,325 rd   +  12,382,053 wr)
+==70979== LL miss rate:            0.2% (          0.1%     +         1.3%  )
