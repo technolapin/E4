@@ -1,4 +1,5 @@
-# II.3
+# II
+## 3
 À ce stade, le code n'est toujours pas générique, car
 seul le type des valeurs des pixels de l'image est générique, 
 alors que le type de points, du domaine, et des iterateurs sont 
@@ -10,6 +11,7 @@ ou d'image.
 
 
 # Niveau 7
+
 Pour obtenir le plus cours chemin, il suffit de calculer la carte de
 distance de l'image avec un masque binaire pour contraindre au chemins
 possibles, puis de partir de la destination et de remonter le gradient

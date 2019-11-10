@@ -15,8 +15,6 @@
 #include "structs_generiques.cc"
 #include "distance_map.cc"
 
-
-
 #include "tests.cc"
 
 
