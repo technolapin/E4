@@ -13,7 +13,7 @@
 #include "image.hh"
 #include "structs_generiques.hh"
 #include "structs_generiques.cc"
-
+#include "distance_map.cc"
 
 
 

@@ -1,5 +1,82 @@
 #pragma once
 
+
+//////////////////////////////////////////////
+// quelques fonctions utilisées par les tests.
+
+template<typename T, typename Box>
+void
+print2d(NImage<2, T, Box> &img,
+	NPoint<2> &dims)
+{
+  for (int j = 0; j < dims.coords[1]; j++)
+  {
+    for(int i = 0; i < dims.coords[0]; i++)
+    {
+      auto pix = img.get_pixel(NPoint<2>({i,j}));
+      if (pix.has_value())
+	std::cout << pix.value() << " "; 
+      else
+	std::cout << "· ";
+    }
+    std::cout << std::endl;
+  }  
+};
+
+
+
+
+template<typename T, typename Box>
+void
+add_pixel_sequence(NImage<2, T, Box>* img,
+		   std::vector<T> values)
+{
+  auto dims = img->get_box()->get_max();
+  auto box = NBox<2>(NPoint<2>::zero(), dims);
+  auto iter = NBoxIterator<2>(box);
+  
+  
+  for (iter.start();
+       iter.is_valid() && iter.value().to_index(dims) < values.size();
+       iter.next())
+  {
+    img->set_pixel(iter.value(), values[iter.value().to_index(dims)]);
+  }
+  
+  
+}
+
+// cette fonction sert à selectionner le plus court chemin à partir
+// de la distance map d'une image masquée
+template<int dim>
+NImage<dim, bool, NMaskedBox<dim>>
+follow_gradient(NImage<dim, unsigned, NMaskedBox<dim>> dmap, NPoint<dim> start)
+{
+  auto img_path = NImage<dim, bool, NMaskedBox<dim>>(*dmap.get_box());
+  img_path.set_pixel(start, true);
+
+  auto ngh_iterator = dmap.neighboor_iterator();
+
+  for (auto point = start; dmap.get_pixel(point) > 0;)
+  {
+    ngh_iterator.start(point);
+    auto min_ngh = ngh_iterator.value();
+    for (ngh_iterator.next(); ngh_iterator.is_valid(); ngh_iterator.next())
+    {
+      if (dmap.get_pixel(min_ngh) > dmap.get_pixel(ngh_iterator.value()))
+	min_ngh = ngh_iterator.value();
+    }
+    point = min_ngh;
+    img_path.set_pixel(point, true);
+  }
+       
+  return img_path;
+}
+
+//////////////////////////////////////////////
+
+
+
 void
 test_generics()
 {
@@ -39,24 +116,6 @@ test_generics()
   assert(img.get_pixel(p3)==8);
 }
 
-template<typename T, typename Box>
-void
-print2d(NImage<2, T, Box> &img,
-	NPoint<2> &dims)
-{
-  for (int j = 0; j < dims.coords[1]; j++)
-  {
-    for(int i = 0; i < dims.coords[0]; i++)
-    {
-      auto pix = img.get_pixel(NPoint<2>({i,j}));
-      if (pix.has_value())
-	std::cout << pix.value() << " "; 
-      else
-	std::cout << "· ";
-    }
-    std::cout << std::endl;
-  }  
-};
 
 
 void
@@ -123,25 +182,6 @@ test_masked_box()
   
 }
 
-template<typename T, typename Box>
-void
-add_pixel_sequence(NImage<2, T, Box>* img,
-		   std::vector<T> values)
-{
-  auto dims = img->get_box()->get_max();
-  auto box = NBox<2>(NPoint<2>::zero(), dims);
-  auto iter = NBoxIterator<2>(box);
-  
-  
-  for (iter.start();
-       iter.is_valid() && iter.value().to_index(dims) < values.size();
-       iter.next())
-  {
-    img->set_pixel(iter.value(), values[iter.value().to_index(dims)]);
-  }
-  
-  
-}
 
 void
 test_partial()
@@ -176,5 +216,13 @@ test_partial()
   auto map = distance_map(part_img);
   std::cout << std::endl;
   print2d(map, dims);
+
+  // le point de sortie connu
+  auto end_point = Point({4, 5});
+
+  auto path = follow_gradient(map, end_point);
+  std::cout << std::endl;
+  print2d(path, dims);
+  
   
 }

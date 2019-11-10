@@ -16,13 +16,13 @@ private:
   std::vector<T> data;
 
 public:
-  NImage(Point dims):
+  NImage(const Point dims):
     dims(dims),
     box(Point::zero(), dims),
     data(std::vector<T>(dims.product()))
   {}
   
-  NImage(Box box):
+  NImage(const Box box):
     dims(box.get_max() - box.get_min()),
     box(box),
     data(std::vector<T>(dims.product()))
