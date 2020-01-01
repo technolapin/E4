@@ -1,0 +1,5 @@
+# a 3-von Neumann neigborhood
+neighborhood="3 4"
+
+pink_bin/dilatball $1 $neighborhood TEMP_AZRFZABFZABCazezaeazLANL_DILAT
+pink_bin/erosball TEMP_AZRFZABFZABCazezaeazLANL_DILAT $neighborhood $2

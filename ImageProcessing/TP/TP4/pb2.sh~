@@ -1,0 +1,4 @@
+image="PS5-Images/cil.pgm"
+threshold=50
+
+pink_bin/seuil $image $threshold thresholded.pgm

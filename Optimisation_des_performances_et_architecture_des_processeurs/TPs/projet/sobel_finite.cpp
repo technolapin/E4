@@ -48,7 +48,10 @@ using std::cout;
 int main ()
 {
 
-  
+  struct timeval start, end;
+  double e;
+  double s;
+
   VideoCapture cap(0); // le numéro 0 indique le point d'accès à la caméra 0 => /dev/video0
   if(!cap.isOpened()){
     cout << "Errore"; return -1;
@@ -68,7 +71,8 @@ int main ()
   int delta = 0;	
 
 
-  
+  gettimeofday(&start, NULL);
+
   for (int iter_count = 0; iter_count < N_ITER; ++iter_count)
   {
     std::cout << "iter " << iter_count << "/" << N_ITER << std::endl;
@@ -79,6 +83,10 @@ int main ()
     sobel_opt( frame_gray, grad, ddepth, 1, 0, 3, scale, delta, BORDER_DEFAULT );
 
   }
+  gettimeofday(&end, NULL);
+  e = ((double) end.tv_sec * 1000000.0 + (double) end.tv_usec);
+  s = ((double) start.tv_sec * 1000000.0 + (double) start.tv_usec);
+  std::cout << "weeeee " << (e-s)/1000000 <<"s" << std::endl;
 }
 
     

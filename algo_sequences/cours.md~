@@ -1,0 +1,74 @@
+# String cmparison; Edit Distance
+
+
+We are interested in quantifiying the similarities between two
+strings.
+This can be usefull for instance to compare the DNA of two people,
+determine if a given text is a plagiarism, etc.
+We will see that this problem is related to an alignement problem
+between two strings.
+
+A distance on words over an alphabet A is a map d from A*xA* into R+
+such that:
+
+	* d(x, y) = 0 <=> x = y (separation)
+	* d(x, y) = d(y, x) (symmetry)
+	* d(x, y) + d(y, z) >= d(x, z) (triangular inequality)
+	
+
+Ex:
+d_pref(u, v) = |u| + |v| - 2|lpc(u, v)|
+where lpc(u, v) is the longuest prefix that is common to u and v.
+d_pref(aabacaa, aabcaad) = 7+7 - 2×3 = 8
+
+d_suf and d_fa are defined similary but used on the longuest common
+suffix factor.
+if |x| = |y|,
+d_ham is defined as the number of positions for which x and y are made
+of distinct letters.
+d_ham(aabacaa, abbbbaa) = 3
+
+Edit distances:
+
+they are defined from edit operations that allow one to transform one
+string x into a second one, denoted by y:
+
+* the subtitution of a letter in x by a letter of y at a given pos
+* the deletion of a letter in x at a given position
+* the insertion of a letter of y at a given pos
+
+
+for instance, if x=ACGA and y=ATGCTA, we can proceed as follows:
+
+| operations        | pos | words   | cost |
+|-------------------|-----|---------|------|
+| substitute A by A | 1   | A CGA   | 0    |
+| substitute C by T | 2   | AT GA   | 1    |
+| substitute G by G | 3   | ATG A   | 0    |
+| insert C          | 5   | ATGC A  | 1    |
+| insert T          | 6   | ATGCT A | 1    |
+| substitute A by A | 7   | ATGCTA  | 0    |
+
+
+for two letters a and b in A, we denote by:
+
+* sub(a, b) the cost of substituing letter a by b
+* del(a) —————————————— deletion of letter a
+* Ins(b) —————————————— insertion of letter b
+
+let x and y be two strings on A, we define
+Leu(x, y) = min{cost of c | c in Σ_xy}
+
+
+…
+
+
+on the previous example, if we assume that
+sub(a, a) = 0,
+sub(a, b) = 1 if a≠b,
+Ins(a) = Del(a) = 1, the cost of c is 3.
+
+…
+
+
+Problem: Comput Lev(x, y) for each x, y in A*

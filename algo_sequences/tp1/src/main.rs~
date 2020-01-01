@@ -1,0 +1,59 @@
+
+
+fn construct_l(wrd: &str) -> Vec<isize>
+{
+    let word: Vec<_> = wrd.chars().collect();
+    println!("{:?}", word);
+    let mut l = vec![-1];
+    let mut index = -1;
+
+    for j in 1..(word.len()+1)
+    {
+        while index >= 0 && word[index as usize] != word[j-1]
+        {
+            index = l[index as usize];
+        }
+
+        index += 1;
+        l.push(index);
+    }
+    
+    l
+}
+
+fn compute_overlap(frag_a: &str, frag_b: &str) -> usize
+{
+    let concatened = &{
+        let mut temp = frag_a.to_string();
+        temp.push_str(frag_b);
+        temp
+    };
+
+    let length = frag_a.len().min(frag_b.len());
+    
+    let l = construct_l(concatened);
+    println!("{:?}", l);
+
+    let overlap = (*l.iter().max().unwrap() as usize).min(length);
+    println!("{} {} {}", frag_a, frag_b, concatened);
+    println!("{} {} {}", frag_a, frag_b, overlap);
+
+    
+    overlap
+
+    
+}
+
+
+
+fn main() {
+    let l = construct_l("ololo");
+    println!("{:?}", l);
+
+
+    compute_overlap("aaa", "aaa");
+    compute_overlap("aaa", "bab");
+
+
+    
+}

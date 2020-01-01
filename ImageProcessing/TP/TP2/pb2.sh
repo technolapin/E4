@@ -1,0 +1,8 @@
+radius=20
+ngh=8
+
+
+pink_bin/closeball $1 $radius $ngh TMP_aleblzabraz_CLOSED
+pink_bin/geoeros TMP_aleblzabraz_CLOSED $1 $ngh -1 $2
+
+rm TMP_aleblzabraz_CLOSED

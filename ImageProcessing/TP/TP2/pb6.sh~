@@ -1,0 +1,6 @@
+
+
+pink_bin/erosion $1 gray_ese.pgm TMP_AEZALBEAZL
+pink_bin/dilation TMP_AEZALBEAZL gray_ese_neuuman_2.pgm $2
+
+rm TMP_AEZALBEAZL

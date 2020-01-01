@@ -9,6 +9,16 @@ abs(int a)
   else
     return a;
 }
+
+// cuisant échec (apparement peu aisé de faire un SLA)
+int
+abs_opt(int a)
+{
+  int comp = a < 0;
+  return a ^ ((comp << 16) >> 16) ;
+}
+
+
 // 374349
 /*
 void
@@ -83,6 +93,14 @@ sobel_opt(cv::InputArray src,
 }
 */
 
+
+
+
+
+
+
+
+
 // moyenne: 17646 - 18733 µs
 void
 sobel(cv::InputArray src,
@@ -108,20 +126,20 @@ sobel(cv::InputArray src,
 
     for (int i = w+1; i < length-w; ++i)
     {
-      
-	ptr_out[i] = (
-		      abs(2*(ptr_in[i+1] - ptr_in[i-1])
-			  + ptr_in[i+1-w] - ptr_in[i-1-w]
-			  + ptr_in[i+1+w] - ptr_in[i-1+w]) +
-	
-		      abs(2*(ptr_in[i+w] - ptr_in[i-w])
-			  + ptr_in[i+w-1] - ptr_in[i-w-1]
-			  + ptr_in[i+w+1] - ptr_in[i-w+1])
-		      )/2;
+      ptr_out[i] = (
+		    abs(2*(ptr_in[i+1] - ptr_in[i-1])
+			+ ptr_in[i+1-w] - ptr_in[i-1-w]
+			+ ptr_in[i+1+w] - ptr_in[i-1+w]) +
+		    
+		    abs(2*(ptr_in[i+w] - ptr_in[i-w])
+			+ ptr_in[i+w-1] - ptr_in[i-w-1]
+			+ ptr_in[i+w+1] - ptr_in[i-w+1])
+		    )/2;
     }
-  dst.assign(mat_out);
+    dst.assign(mat_out);
   
 }
+
 // 14828 µs
 void
 sobel_opt(cv::InputArray src,
@@ -149,39 +167,30 @@ sobel_opt(cv::InputArray src,
   auto ptr_apres = ptr_in + w; // ligne d'après dans tableau de sortie
 
   int i = w+1;
-     auto gauche = i-1;
-    auto droite = i+1;
-	
-    auto g0 = ptr_avant[gauche];
-    auto g1 = ptr_in[gauche];
-    auto g2 = ptr_apres[gauche];
-    auto c0 = ptr_avant[i];
-    auto c1 = ptr_in[i];
-    auto c2 = ptr_apres[i];
-    auto d0 = ptr_avant[droite];
-    auto d1 = ptr_in[droite];
-    auto d2 = ptr_apres[droite];
-  
-  for  ( i = w+1; i < length-w; ++i)
+  auto gauche = i-1;
+  auto droite = i+1;
+   
+  auto c0 = ptr_avant[i];
+  auto c1 = ptr_in[i];
+  auto c2 = ptr_apres[i];
+  auto g0 = ptr_avant[gauche];
+  auto g1 = ptr_in[gauche];
+  auto g2 = ptr_apres[gauche];
+  auto d0 = ptr_avant[droite];
+  auto d1 = ptr_in[droite];
+  auto d2 = ptr_apres[droite];
+  for  (i = w+1; i < length-w-32;)
   {
+    //////////////////////////////////////////////////////////////////////////////////
     gauche = i-1;
     droite = i+1;
     
-    /*ptr_out[i] = (
-		  abs((ptr_in[i+1] - ptr_in[i-1])*2
-		      + ptr_avant[i+1] - ptr_avant[i-1]
-		      + ptr_apres[i+1] - ptr_apres[i-1]) +
-	
-		  abs((ptr_apres[i] - ptr_avant[i])*2
-		      + ptr_apres[i-1] - ptr_avant[i-1]
-		      + ptr_apres[i+1] - ptr_avant[i+1])
-		  )/2;*/
 
-   ptr_out[i] = (
+    ptr_out[i] = (
 		  abs((d1 - g1)*2
 		      + d0 - g0
 		      + d2 - g2) +
-	
+		  
 		  abs((c2 - c0)*2
 		      + g2 - g0
 		      + g2 - g0)
@@ -197,6 +206,1135 @@ sobel_opt(cv::InputArray src,
     d0 = ptr_avant[droite];
     d1 = ptr_in[droite];
     d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    gauche = i-1;
+    droite = i+1;
+    
+
+    ptr_out[i] = (
+		  abs((d1 - g1)*2
+		      + d0 - g0
+		      + d2 - g2) +
+		  
+		  abs((c2 - c0)*2
+		      + g2 - g0
+		      + g2 - g0)
+		  )/2;
+    
+    
+    g0 = c0; // On décale le kernel de gauche à droite
+    g1 = c1;
+    g2 = c2;
+    c0 = d0;
+    c1 = d1;
+    c2 = d2;
+    d0 = ptr_avant[droite];
+    d1 = ptr_in[droite];
+    d2 = ptr_apres[droite];
+    ++i;
+
+
+
+
+
+
+
+
+
+
+
+
     
   }
   dst.assign(mat_out);

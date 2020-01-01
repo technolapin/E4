@@ -197,11 +197,11 @@ int main () {
     //    resize(frame_gray, frame_gray, Size(), 0.5, 0.5);
     //    resize(grad, grad, Size(), 0.5, 0.5);
     
-    imshow("Video input",frame);
+    //imshow("Video input",frame);
     //imshow("Video gray levels",frame_gray);
     imshow("Video Mediane custom",frame1);    
     //imshow("Video Mediane base",frame1_base);    
-    //imshow("Video Edge detection",grad);  
+    imshow("Video Edge detection",grad);  
     
     
     key=waitKey(5);

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Rendu 2 - Information scientifique.html</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+</head>
+
+<body>
+
+<p><strong>Groupe: Baruzy Amaury, Chomicki Clément</strong></p>
+<h1 id="sujet-les-exosquelettes">Sujet: <em>Les exosquelettes</em></h1>
+<p>Équation de recherche Scopus:</p>
+<pre><code>TITLE-ABS-KEY ( exoskeleton )  AND  ( LIMIT-TO ( SUBJAREA ,  &quot;ENGI&quot; )  OR  LIMIT-TO ( SUBJAREA ,  &quot;COMP&quot; )  OR  LIMIT-TO ( SUBJAREA ,  &quot;MEDI&quot; )  OR  LIMIT-TO ( SUBJAREA ,  &quot;MATH&quot; )  OR  LIMIT-TO ( SUBJAREA ,  &quot;MATE&quot; ) )  AND  ( EXCLUDE ( PUBYEAR ,  2020 ) )  AND  ( EXCLUDE ( PUBYEAR ,  2019 ) )  AND  ( EXCLUDE ( EXACTKEYWORD ,  &quot;Animals&quot; )  OR  EXCLUDE ( EXACTKEYWORD ,  &quot;Nonhuman&quot; )  OR  EXCLUDE ( EXACTKEYWORD ,  &quot;Animal&quot; )  OR  EXCLUDE ( EXACTKEYWORD ,  &quot;Chitin&quot; )  OR  EXCLUDE ( EXACTKEYWORD ,  &quot;Chitosan&quot; ) ) </code></pre>
+<p>5548 résultats, dont 2062 articles que l’on va analyser avec cortext</p>
+<h2 id="évolution-temporelle-du-nombre-darticle">Évolution temporelle du nombre d’article:</h2>
+<figure>
+<img src="images/articles.png" alt="" /><figcaption>histogramme</figcaption>
+</figure>
+<h2 id="principaux-acteurs">Principaux acteurs</h2>
+<figure>
+<img src="images/Réseau%20de%2020%20countries.jpg" alt="" /><figcaption>countries</figcaption>
+</figure>
+<h2 id="graphe-des-thématiques-du-champ-de-recherche-et-leurs-évolutions">Graphe des thématiques du champ de recherche et leurs évolutions</h2>
+<p><img src="images/Réseau%20de%20150%20termes%20d’origine.jpg" alt="themes" /> <img src="images/150terms2periods%20tubes.png" alt="pipes" /></p>
+<h2 id="graphe-des-collaborations-internationale-dans-ce-champ-de-recherche">Graphe des collaborations internationale dans ce champ de recherche</h2>
+<figure>
+<img src="images/Réseau%20de%20150%20termes%20modifiés.jpg" alt="" /><figcaption>themes</figcaption>
+</figure>
+<h2 id="graphe-de-limplication-de-la-france-dans-les-thématiques">Graphe de l’implication de la France dans les thématiques</h2>
+<figure>
+<img src="images/150termstagFrance.jpg" alt="" /><figcaption>Fronce</figcaption>
+</figure>
+<h2 id="graphe-de-la-répartition-géographique-du-traîtement-des-thématiques">Graphe de la répartition géographique du traîtement des thématiques</h2>
+<figure>
+<img src="images/150termstagcountry.jpg" alt="" /><figcaption>themes+countries</figcaption>
+</figure>
+
+</body>
+</html>

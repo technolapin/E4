@@ -1,0 +1,21 @@
+# I
+
+Graphe orienté pondéré dont les noeuds sont les fragments et les poids
+sont la taille du plus grand overlap entre les deux fragments. (ie le
+plus grand sufixe de l'antécédent étant préfixe de l'image)
+
+
+# II
+
+
+# III
+
+Soient U et V deux fragments
+
+On cherche la plus grande frontière f de UV tq |f| <= min(|U|, |V|)
+
+
+# IV
+
+
+# V

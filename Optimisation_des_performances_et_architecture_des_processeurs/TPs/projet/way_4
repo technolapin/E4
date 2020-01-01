@@ -1,9 +1,9 @@
-==70970== Cachegrind, a cache and branch-prediction profiler
-==70970== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
-==70970== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==70970== Command: ./a.out
-==70970== 
---70970-- warning: L3 cache found, using its data for the LL simulation.
+==84810== Cachegrind, a cache and branch-prediction profiler
+==84810== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==84810== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==84810== Command: ./a.out
+==84810== 
+--84810-- warning: L3 cache found, using its data for the LL simulation.
 [ WARN:0] global /build/opencv/src/opencv-4.1.2/modules/videoio/src/cap_gstreamer.cpp (933) open OpenCV | GStreamer warning: Cannot query video position: status=0, value=-1, duration=-1
 iter 0/100
 iter 1/100
@@ -105,19 +105,20 @@ iter 96/100
 iter 97/100
 iter 98/100
 iter 99/100
-==70970== 
-==70970== I   refs:      8,958,142,635
-==70970== I1  misses:        1,055,841
-==70970== LLi misses:          225,972
-==70970== I1  miss rate:          0.01%
-==70970== LLi miss rate:          0.00%
-==70970== 
-==70970== D   refs:      2,582,828,247  (1,575,312,836 rd   + 1,007,515,411 wr)
-==70970== D1  misses:      175,973,549  (  133,188,748 rd   +    42,784,801 wr)
-==70970== LLd misses:       26,098,832  (   13,498,162 rd   +    12,600,670 wr)
-==70970== D1  miss rate:           6.8% (          8.5%     +           4.2%  )
-==70970== LLd miss rate:           1.0% (          0.9%     +           1.3%  )
-==70970== 
-==70970== LL refs:         177,029,390  (  134,244,589 rd   +    42,784,801 wr)
-==70970== LL misses:        26,324,804  (   13,724,134 rd   +    12,600,670 wr)
-==70970== LL miss rate:            0.2% (          0.1%     +           1.3%  )
+weeeee 35.8847s
+==84810== 
+==84810== I   refs:      7,375,224,568
+==84810== I1  misses:        1,057,854
+==84810== LLi misses:          227,870
+==84810== I1  miss rate:          0.01%
+==84810== LLi miss rate:          0.00%
+==84810== 
+==84810== D   refs:      1,915,388,529  (1,106,773,927 rd   + 808,614,602 wr)
+==84810== D1  misses:      174,292,100  (  132,399,173 rd   +  41,892,927 wr)
+==84810== LLd misses:       25,292,384  (   12,868,145 rd   +  12,424,239 wr)
+==84810== D1  miss rate:           9.1% (         12.0%     +         5.2%  )
+==84810== LLd miss rate:           1.3% (          1.2%     +         1.5%  )
+==84810== 
+==84810== LL refs:         175,349,954  (  133,457,027 rd   +  41,892,927 wr)
+==84810== LL misses:        25,520,254  (   13,096,015 rd   +  12,424,239 wr)
+==84810== LL miss rate:            0.3% (          0.2%     +         1.5%  )

@@ -1,0 +1,13 @@
+;; This buffer is for text that is not saved, and for Lisp evaluation.
+;; To create a file, visit it with C-x C-f and enter text in its buffer.
+
+Ce brevet qu'il est bien.
+
+EDGERTON VICTOR REGGIE, GERASIMENKO YURI P, GAD PARAG, trois
+États-uniens, ont inventé un dispositif innovant pour aider
+à la reconstruction du système nerveux de patients paralysés.
+Le dispositif consiste en un neuromodulateur, récupérant les signaux
+trop faibles émis par les nerfs endomagés du patient, et l'analyse
+afin d'actionner un exosquelette permettant la marche au paralytique.
+De plus, ce signal est amplifié et est utilisé pour stimuler la
+repousse nerveuse, afin de guérir le patient.

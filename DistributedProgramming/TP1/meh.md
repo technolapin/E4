@@ -1,0 +1,53 @@
+# Serveur
+
+## 1
+
+// socket d'écoute
+s = socket(AF_INET, SOCK_STREAM, 0);
+
+## 2
+
+Créer une struct sockaddr_in
+ad.sin_family = AF_INET;
+ad.sin_pot = htons(7000);
+ad.sin_addr.s_addr = INADDR_ANY;
+
+## 3
+
+bind(s, &ad ...);
+
+## 4
+
+listen(s, 5)
+
+## 5
+
+// socket de service
+// accept est le seul truc bloquant dans tout ça
+s2 = accept(s,  ,  );
+
+
+# Client
+
+
+## 1
+
+// socket d'écoute
+s = socket(AF_INET, SOCK_STREAM, 0);
+
+## 2
+
+struct sockaddr.in. = getbyhostname("azeaabfardagagrgeggeq");
+## 3
+
+bind(s, &ad ...);
+
+## 4
+
+listen(s, 5)
+
+## 5
+
+// socket de service
+// accept est le seul truc bloquant dans tout ça
+s2 = accept(s,  ,  );

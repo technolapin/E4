@@ -1,0 +1,7 @@
+[package]
+name = "tp1"
+version = "0.1.0"
+authors = ["technolapin <clement.chomicki@protonmail.fr>"]
+edition = "2018"
+
+[dependencies]
