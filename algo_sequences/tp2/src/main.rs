@@ -1,5 +1,6 @@
 
 
+/// generate the matrix
 fn edit_distance_table<F, G, H>(w1: &Vec<char>,
                        w2: &Vec<char>,
                        del: F,
@@ -51,6 +52,7 @@ where
 
 
 
+/// gives the edit discance of two chains
 fn edit_distance(w1: &Vec<char>,
                  w2: &Vec<char>) -> usize
 {
@@ -65,23 +67,76 @@ fn edit_distance(w1: &Vec<char>,
 
 
 
-
-fn alignement_score(w1: &Vec<char>,
-                    w2: &Vec<char>) -> usize
+fn best_align(w1: &Vec<char>,
+              w2: &Vec<char>) -> (Vec<char>, Vec<char>)
 {
-    let big_int = (w1.len()+w2.len())*200;
     let del = |_: char| 1;
     let ins = |_: char| 1;
-    let sub = |a: char, b: char|
-    {
-        if a == b {0}
-//        else if a == ' ' {0}
-        else {1}
-    };
-    
+    let sub = |a: char, b: char| if a == b {0} else {1};
+
     let table = edit_distance_table(w1, w2, del, ins, sub);
-    print_table(&table);
-    table[table.len()-1][table[0].len()-1]
+
+
+    let mut i = table.len() - 1;
+    let mut j = table[0].len() - 1;
+
+    let mut walign1 = vec![];
+    let mut walign2 = vec![];
+    
+    while i != 0 && j != 0
+    {
+        if table[i][j-1] + 1 == table[i][j]
+        {
+            println!("INS");
+            walign1.insert(0, '_');
+            walign2.insert(0, w2[j-1]);
+            j -= 1;
+        }
+        else if table[i-1][j] + 1 == table[i][j]
+        {
+            println!("DEL");
+            walign1.insert(0, w1[i-1]);
+            walign2.insert(0, '_');
+            i -= 1;
+        }
+        else if table[i-1][j-1] == table[i][j]
+        {
+            println!("SUB identique");
+            walign1.insert(0, w1[i-1]);
+            walign2.insert(0, w2[j-1]);
+            i -= 1;
+            j -= 1;
+        }
+        else
+        {
+            println!("SUB differents");
+            walign1.insert(0, '_');
+            walign2.insert(0, w2[j-1]);
+            walign1.insert(0, w1[i-1]);
+            walign2.insert(0, '_');
+            i -= 1;
+            j -= 1;
+        }
+
+    }
+
+    // here we are sure that either i or j is 0
+    
+    for k in 0..i
+    {
+        walign1.insert(k, w1[k]);
+        walign2.insert(k, '_');
+    }
+    for k in 0..j
+    {
+        walign1.insert(k, '_');
+        walign2.insert(k, w2[k]);
+    }
+    
+    
+
+    (walign1, walign2)
+    
 }
 
 
@@ -103,16 +158,18 @@ fn print_table(table: &Vec<Vec<usize>>)
 
 
 fn main() {
-    let w1 = "abrd".chars().collect::<Vec<char>>();
+    let w1 = "Brigitte Macron".chars().collect::<Vec<char>>();
     let w2 = "abcd".chars().collect::<Vec<char>>();
 
 
 
     println!("{:?}\n{:?}", w1, w2);
     
-    println!("edit distance: {}", edit_distance(&w1, &w2));
-    println!("alignement score: {}", alignement_score(&w1, &w2));
+    println!("alignement score: {}", edit_distance(&w1, &w2));
 
+    let (wa1, wa2) = best_align(&w1, &w2);
+    println!("{:?}", wa1);
+    println!("{:?}", wa2);
 
 
     
