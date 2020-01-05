@@ -152,8 +152,33 @@ fn print_table(table: &Vec<Vec<usize>>)
     }
 }
 
+use std::io::{self, BufReader};
+use std::io::prelude::*;
+use std::fs::File;
+
+fn read(file_name: &str) -> io::Result<Vec<char>>
+{
+    let f = File::open(file_name)?;
+    let mut buff = BufReader::new(f);
+    let mut s = String::new();
+    buff.read_to_string(&mut s);
+    Ok(s.chars().collect())
+}
+
+fn test_q3() -> io::Result<()>
+{
+    let w1 = read("texte1.txt")?;
+    let w2 = read("texte2.txt")?;
+
+    let (wa1, wa2) = best_align(&w1, &w2);
+    
+    println!("ALIGNEMENT OPTIMAL:");
+    println!("{:?}", wa1.iter().collect::<String>());
+    println!("{:?}", wa2.iter().collect::<String>());
 
 
+    Ok(())
+}
 
 
 
@@ -170,6 +195,8 @@ fn main() {
     let (wa1, wa2) = best_align(&w1, &w2);
     println!("{:?}", wa1);
     println!("{:?}", wa2);
+
+    test_q3();
 
 
     
