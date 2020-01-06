@@ -131,10 +131,11 @@ fn best_align(w1: &Vec<char>,
             .min(table[i-1][j])
             .min(table[i-1][j-1]);
         
-        if table[i][j-1] == min
+        if table[i-1][j-1] == min
         {
-            walign1.insert(0, '_');
+            walign1.insert(0, w1[i-1]);
             walign2.insert(0, w2[j-1]);
+            i -= 1;
             j -= 1;
         }
         else if table[i-1][j] == min
@@ -143,23 +144,14 @@ fn best_align(w1: &Vec<char>,
             walign2.insert(0, '_');
             i -= 1;
         }
-        else if table[i-1][j-1] == table[i][j]
-        {
-            walign1.insert(0, w1[i-1]);
-            walign2.insert(0, w2[j-1]);
-            i -= 1;
-            j -= 1;
-        }
         else
         {
             walign1.insert(0, '_');
             walign2.insert(0, w2[j-1]);
-            walign1.insert(0, w1[i-1]);
-            walign2.insert(0, '_');
-            i -= 1;
             j -= 1;
         }
     }
+
     // here we are sure that either i or j is 0
     
     for k in 0..i
@@ -236,7 +228,6 @@ fn best_align_parag(w1: &Vec<Vec<char>>,
     let del = |par: &Vec<char>| par.len();
     let ins = |par: &Vec<char>| par.len();
     let sub = |a: &Vec<char>, b: &Vec<char>| {
-        //        if edit_distance(a, b) < a.len().min(b.len()) {0} else {edit_distance(a, b)}
         edit_distance(a, b)
     };
 
@@ -256,10 +247,11 @@ fn best_align_parag(w1: &Vec<Vec<char>>,
             .min(table[i-1][j])
             .min(table[i-1][j-1]);
         
-        if table[i][j-1] == min
+        if table[i-1][j-1] == min
         {
-            walign1.insert(0, vec![]);
+            walign1.insert(0, w1[i-1].clone());
             walign2.insert(0, w2[j-1].clone());
+            i -= 1;
             j -= 1;
         }
         else if table[i-1][j] == min
@@ -268,23 +260,12 @@ fn best_align_parag(w1: &Vec<Vec<char>>,
             walign2.insert(0, vec![]);
             i -= 1;
         }
-        else if table[i-1][j-1] == min
-        {
-            walign1.insert(0, w1[i-1].clone());
-            walign2.insert(0, w2[j-1].clone());
-            i -= 1;
-            j -= 1;
-        }
-        else 
+        else
         {
             walign1.insert(0, vec![]);
             walign2.insert(0, w2[j-1].clone());
-            walign1.insert(0, w1[i-1].clone());
-            walign2.insert(0, vec![]);
-            i -= 1;
             j -= 1;
         }
-
     }
 
     // here we are sure that either i or j is 0
@@ -324,9 +305,34 @@ fn test_q3() -> io::Result<()>
     println!();
     println!();
 
+
+    print_adjacent(wa1, wa2);
+
+    
     Ok(())
 }
 
+
+
+fn print_adjacent(w1: Vec<char>, w2: Vec<char>)
+{
+    let width = 64;
+    let it1 = w1.chunks(width);
+    let it2 = w1.chunks(width);
+
+    it1.zip(it2)
+        .for_each(|(l1, l2)|{
+            print!("{} ", l1.iter().collect::<String>());
+            for i in l1.len()..width
+            {
+                print!(" ");
+            }
+            print!("| {}", l2.iter().collect::<String>());
+            println!();
+        });
+    
+    
+}
 
 
 fn test_q4() -> io::Result<()>
