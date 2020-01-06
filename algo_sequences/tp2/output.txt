@@ -1,41 +1,103 @@
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 /// QUESTION 3
+
 ALIGNEMENT OPTIMAL:
-"Source Wikipedia_______. La_ ______di___________s___________t_a_____n_____________ce de _______________L_________e_venshtei__n ____une distance ________mathematique donnant une mesure de la similarite entre deux chaines de caracteres. Elle est egale au nombre minimal de caracteres qu il faut supprimer, inserer ou _remplacer pour passer d une _chain_e a l autre. Elle a ete proposee par Vladimir Levenshtein en 1965. Elle est ______egalement connue sous les noms de distance d_ _e___dition ou de d______e______formation dynamique temporelle, notamment en reconnaissance de formes et particulierement en reconnaissance vocale1,2._Cette distance est __d _autant plus grande que le nombre de differences entre les deux chaines est grand. La distance de Levenshtein peut etre consideree comme une generalisation de la distance de Hamming________________________________________________________________________________________________________. On peut montrer en particulier que la distance de Hamming est un majorant de la distance de Levenshtein.Definition _________: on appelle distance de Levenshtein entre deux mots M et P le cout minimal pour aller de M _a P en effectuant les operations elementaires_ ____s_____________uivantes : i) substitution d un caractere de M _en un caractere de P ; ii) _ajout___ dans M d un caractere de P ; iii) suppression ____d________ __un caractere de M. On associe ainsi a chacune de ces operations un cout. Le c_o__ut ____est toujours egal a 1, sauf __dans le_ ___ca____s __d une ___substitution de caracteres identiques___. ______________Exemples : si M = \"examen\" et P = \"examen\", alors LD (M, P) = 0, parce qu aucune operation n a ete realisee. Si M = \"examen\" et P = \"examan\", alors LD (M, P) = 1, parce qu il y a eu un_ remplacement (changement du e en a), et que l on ne peut pas en faire ____________m___o______________________in_______s.\n\n"
-
-"Source Wikipedia modifie par un etudiant du cours IT-4301E, traitement algorithmique de l information. La distance de d editon est une distance au sens mathematique donnant une mesure de la similarite entre deux ____se_quenc_____e__s. Elle est egale au nombre minimal de caracteres qu il faut supprimer, inserer ou substituer pour passer d une sequence a l autre. Elle a ete proposee par Vladimir Levenshtein en 1965. Elle est ainsi egalement connue sous les noms de distance de Levenshtein ou de distance de deformation dynamique temporelle_ __da___ns le __do_mai___n_e de _________________l_______a ___reconnaissance de formes. Cette distance est est une fonction croissante du nombre de differences entre les deux _sequences_______. La distance d_ _e___dition peut etre consideree comme une generalisation de la distance de Hamming (donnee par le nombre de position en lesquelles les deux sequences possedent des caracteres differents). On peut montrer en particulier que la distance de Hamming est un majorant de la distance d_ _e___dition.Definition formelle : on appelle distance d_ _e___dition entre deux mots M et P le cout minimal __transformer M en P en effectuant les operations elementaires, dites d edition, suivantes : i) substitution d un caractere de M par un caractere de P ; ii) insertion dans M d un caractere de P ; iii) suppression (ou deletion) d un caractere de M. On associe ainsi a chacune de ces operations un cout. On choisit souvent un cou_t egal a 1_ pour toutes les operations excepte la substitution de caracteres identiques qui a un cout nul.Exemples : si M = \"examen\" et P = \"examen\", alors Lev(M, P) = 0_ parce qu aucune operation n a ete realisee. Si M = \"examen\" et P = \"examan\", alors Lev(M, P) = 1, parce qu il y a eu une substitution (changement du e en a), et que l on ne peut pas en faire une transformation de M en P avec un moindre cout.\n\n"
-
+Source Wikipedia_______. La_ ______di___________s_ | Source Wikipedia modifie par un etudiant du cours 
+__________t_a_____n_____________ce de ____________ | IT-4301E, traitement algorithmique de l informatio
+___L_________e_venshtei__n ____une distance ______ | n. La distance de d editon est une distance au sen
+__mathematique donnant une mesure de la similarite | s mathematique donnant une mesure de la similarite
+ entre deux chaines de caracteres. Elle est egale  |  entre deux ____se_quenc_____e__s. Elle est egale 
+au nombre minimal de caracteres qu il faut supprim | au nombre minimal de caracteres qu il faut supprim
+er, inserer ou _remplacer pour passer d une _chain | er, inserer ou substituer pour passer d une sequen
+_e a l autre. Elle a ete proposee par Vladimir Lev | ce a l autre. Elle a ete proposee par Vladimir Lev
+enshtein en 1965. Elle est ______egalement connue  | enshtein en 1965. Elle est ainsi egalement connue 
+sous les noms de distance d_ _e___dition ou de d__ | sous les noms de distance de Levenshtein ou de dis
+____e______formation dynamique temporelle, notamme | tance de deformation dynamique temporelle_ __da___
+nt en reconnaissance de formes et particulierement | ns le __do_mai___n_e de _________________l_______a
+ en reconnaissance vocale1,2._Cette distance est _ |  ___reconnaissance de formes. Cette distance est e
+_d _autant plus grande que le nombre de difference | st une fonction croissante du nombre de difference
+s entre les deux chaines est grand. La distance de | s entre les deux _sequences_______. La distance d_
+ Levenshtein peut etre consideree comme une genera |  _e___dition peut etre consideree comme une genera
+lisation de la distance de Hamming________________ | lisation de la distance de Hamming (donnee par le 
+__________________________________________________ | nombre de position en lesquelles les deux sequence
+______________________________________. On peut mo | s possedent des caracteres differents). On peut mo
+ntrer en particulier que la distance de Hamming es | ntrer en particulier que la distance de Hamming es
+t un majorant de la distance de Levenshtein.Defini | t un majorant de la distance d_ _e___dition.Defini
+tion _________: on appelle distance de Levenshtein | tion formelle : on appelle distance d_ _e___dition
+ entre deux mots M et P le cout minimal pour aller |  entre deux mots M et P le cout minimal __transfor
+ de M _a P en effectuant les operations elementair | mer M en P en effectuant les operations elementair
+es_ ____s_____________uivantes : i) substitution d | es, dites d edition, suivantes : i) substitution d
+ un caractere de M _en un caractere de P ; ii) _aj |  un caractere de M par un caractere de P ; ii) ins
+out___ dans M d un caractere de P ; iii) suppressi | ertion dans M d un caractere de P ; iii) suppressi
+on ____d________ __un caractere de M. On associe a | on (ou deletion) d un caractere de M. On associe a
+insi a chacune de ces operations un cout. Le c_o__ | insi a chacune de ces operations un cout. On chois
+ut ____est toujours egal a 1, sauf __dans le_ ___c | it souvent un cou_t egal a 1_ pour toutes les oper
+a____s __d une ___substitution de caracteres ident | ations excepte la substitution de caracteres ident
+iques___. ______________Exemples : si M = "examen" | iques qui a un cout nul.Exemples : si M = "examen"
+ et P = "examen", alors LD (M, P) = 0, parce qu au |  et P = "examen", alors Lev(M, P) = 0_ parce qu au
+cune operation n a ete realisee. Si M = "examen" e | cune operation n a ete realisee. Si M = "examen" e
+t P = "examan", alors LD (M, P) = 1, parce qu il y | t P = "examan", alors Lev(M, P) = 1, parce qu il y
+ a eu un_ remplacement (changement du e en a), et  |  a eu une substitution (changement du e en a), et 
+que l on ne peut pas en faire ____________m___o___ | que l on ne peut pas en faire une transformation d
+___________________in_______s.                     | e M en P avec un moindre cout.
 
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 /// QUESTION 4
-##################################################
-"Source Wikipedia. "
-"Source Wikipedia modifie par un etudiant du cours IT-4301E, traitement algorithmique de l information. "
-##################################################
-"La distance de Levenshtein une distance mathematique donnant une mesure de la similarite entre deux chaines de caracteres. Elle est egale au nombre minimal de caracteres qu il faut supprimer, inserer ou remplacer pour passer d une chaine a l autre. Elle a ete proposee par Vladimir Levenshtein en 1965. Elle est egalement connue sous les noms de distance d edition ou de deformation dynamique temporelle, notamment en reconnaissance de formes et particulierement en reconnaissance vocale1,2.Cette distance est d autant plus grande que le nombre de differences entre les deux chaines est grand. La distance de Levenshtein peut etre consideree comme une generalisation de la distance de Hamming. On peut montrer en particulier que la distance de Hamming est un majorant de la distance de Levenshtein."
-"La distance de d editon est une distance au sens mathematique donnant une mesure de la similarite entre deux sequences. Elle est egale au nombre minimal de caracteres qu il faut supprimer, inserer ou substituer pour passer d une sequence a l autre. Elle a ete proposee par Vladimir Levenshtein en 1965. Elle est ainsi egalement connue sous les noms de distance de Levenshtein ou de distance de deformation dynamique temporelle dans le domaine de la reconnaissance de formes. Cette distance est est une fonction croissante du nombre de differences entre les deux sequences. La distance d edition peut etre consideree comme une generalisation de la distance de Hamming (donnee par le nombre de position en lesquelles les deux sequences possedent des caracteres differents). On peut montrer en particulier que la distance de Hamming est un majorant de la distance d edition. "
-##################################################
-""
-"Et pourquoi ne pas raconter des ballivernes entre temps pour detecter les lecteurs attentifs."
-##################################################
-""
-"Et inserer un paragraphe qui n\'a rien a voir avec le chmiliblic pour tromper le chaland !"
-##################################################
-"Definition : on appelle distance de Levenshtein entre deux mots M et P le cout minimal pour aller de M a P en effectuant les operations elementaires suivantes : i) substitution d un caractere de M en un caractere de P ; ii) ajout dans M d un caractere de P ; iii) suppression d un caractere de M. On associe ainsi a chacune de ces operations un cout. Le cout est toujours egal a 1, sauf dans le cas d une substitution de caracteres identiques. "
-"Definition formelle : on appelle distance d edition entre deux mots M et P le cout minimal transformer M en P en effectuant les operations elementaires, dites d edition, suivantes : i) substitution d un caractere de M par un caractere de P ; ii) insertion dans M d un caractere de P ; iii) suppression (ou deletion) d un caractere de M. On associe ainsi a chacune de ces operations un cout. On choisit souvent un cout egal a 1 pour toutes les operations excepte la substitution de caracteres identiques qui a un cout nul. "
-##################################################
-"Exemples : si M = \"examen\" et P = \"examen\", alors LD (M, P) = 0, parce qu aucune operation n a ete realisee. Si M = \"examen\" et P = \"examan\", alors LD (M, P) = 1, parce qu il y a eu un remplacement (changement du e en a), et que l on ne peut pas en faire moins."
-"Exemples : si M = \"examen\" et P = \"examen\", alors Lev(M, P) = 0 parce qu aucune operation n a ete realisee. Si M = \"examen\" et P = \"examan\", alors Lev(M, P) = 1, parce qu il y a eu une substitution (changement du e en a), et que l on ne peut pas en faire une transformation de M en P avec un moindre cout."
-##################################################
-""
-"Pas super complet ce cours..."
-##################################################
-""
-""
-##################################################
-""
-""
+################################################## | ##################################################
+Source Wikipedia__________________________________ | Source Wikipedia modifie par un etudiant du cours 
+__________________________________________________ | IT-4301E, traitement algorithmique de l informatio
+_.                                                 | n. 
+################################################## | ##################################################
+La distance de _Levenshtein une distance ________m | La distance de d editon est une distance au sens m
+athematique donnant une mesure de la similarite en | athematique donnant une mesure de la similarite en
+tre deux chaines de caracteres. Elle est egale au  | tre deux ____se_quenc_____e__s. Elle est egale au 
+nombre minimal de caracteres qu il faut supprimer, | nombre minimal de caracteres qu il faut supprimer,
+ inserer ou _remplacer pour passer d une _chain_e  |  inserer ou substituer pour passer d une sequence 
+a l autre. Elle a ete proposee par Vladimir Levens | a l autre. Elle a ete proposee par Vladimir Levens
+htein en 1965. Elle est ______egalement connue sou | htein en 1965. Elle est ainsi egalement connue sou
+s les noms de distance d_ _e___dition ou de d_____ | s les noms de distance de Levenshtein ou de distan
+_e______formation dynamique temporelle, notamment  | ce de deformation dynamique temporelle_ __da___ns 
+en reconnaissance de formes et particulierement en | le __do_mai___n_e de _________________l_______a __
+ reconnaissance vocale1,2._Cette distance est __d  | _reconnaissance de formes. Cette distance est est 
+_autant plus grande que le nombre de differences e | une fonction croissante du nombre de differences e
+ntre les deux chaines est grand. La distance de Le | ntre les deux _sequences_______. La distance d_ _e
+venshtein peut etre consideree comme une generalis | ___dition peut etre consideree comme une generalis
+ation de la distance de Hamming___________________ | ation de la distance de Hamming (donnee par le nom
+__________________________________________________ | bre de position en lesquelles les deux sequences p
+___________________________________. On peut montr | ossedent des caracteres differents). On peut montr
+er en particulier que la distance de Hamming est u | er en particulier que la distance de Hamming est u
+n majorant de la distance de Levenshtein._         | n majorant de la distance d_ _e___dition. 
+################################################## | ##################################################
+__________________________________________________ | Et pourquoi ne pas raconter des ballivernes entre 
+___________________________________________        | temps pour detecter les lecteurs attentifs.
+################################################## | ##################################################
+__________________________________________________ | Et inserer un paragraphe qui n'a rien a voir avec 
+_______________________________________            | le chmiliblic pour tromper le chaland !
+################################################## | ##################################################
+Definition _________: on appelle distance de Leven | Definition formelle : on appelle distance d_ _e___
+shtein entre deux mots M et P le cout minimal pour | dition entre deux mots M et P le cout minimal __tr
+ aller de M _a P en effectuant les operations elem | ansformer M en P en effectuant les operations elem
+entaires_ ____s_____________uivantes : i) substitu | entaires, dites d edition, suivantes : i) substitu
+tion d un caractere de M _en un caractere de P ; i | tion d un caractere de M par un caractere de P ; i
+i) _ajout___ dans M d un caractere de P ; iii) sup | i) insertion dans M d un caractere de P ; iii) sup
+pression ____d________ __un caractere de M. On ass | pression (ou deletion) d un caractere de M. On ass
+ocie ainsi a chacune de ces operations un cout. Le | ocie ainsi a chacune de ces operations un cout. On
+ c_o__ut ____est toujours egal a 1, sauf __dans le |  choisit souvent un cou_t egal a 1_ pour toutes le
+_ ___ca____s __d une ___substitution de caracteres | s operations excepte la substitution de caracteres
+ identiques__________________.                     |  identiques qui a un cout nul. 
+################################################## | ##################################################
+Exemples : si M = "examen" et P = "examen", alors  | Exemples : si M = "examen" et P = "examen", alors 
+LD (M, P) = 0, parce qu aucune operation n a ete r | Lev(M, P) = 0_ parce qu aucune operation n a ete r
+ealisee. Si M = "examen" et P = "examan", alors LD | ealisee. Si M = "examen" et P = "examan", alors Le
+ (M, P) = 1, parce qu il y a eu un_ remplacement ( | v(M, P) = 1, parce qu il y a eu une substitution (
+changement du e en a), et que l on ne peut pas en  | changement du e en a), et que l on ne peut pas en 
+faire ____________m___o______________________in___ | faire une transformation de M en P avec un moindre
+____s.                                             |  cout.
+################################################## | ##################################################
+_____________________________                      | Pas super complet ce cours...
+################################################## | ##################################################
+################################################## | ##################################################
 
 

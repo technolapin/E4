@@ -282,7 +282,11 @@ fn best_align_parag(w1: &Vec<Vec<char>>,
     }
         
 
-    (walign1, walign2)
+    walign1.iter()
+        .zip(walign2.iter())
+        .map(|(w1, w2)| {
+            best_align(w1, w2)
+        }).unzip()
     
 }
 
@@ -298,27 +302,32 @@ fn test_q3() -> io::Result<()>
 
     let (wa1, wa2) = best_align(&w1, &w2);
     
-    println!("ALIGNEMENT OPTIMAL:");
+    println!("\nALIGNEMENT OPTIMAL:");
+    /*
     println!("{:?}", wa1.iter().collect::<String>());
     println!();
     println!("{:?}", wa2.iter().collect::<String>());
     println!();
     println!();
+    */
 
-
-    print_adjacent(wa1, wa2);
-
+    print_adjacent(&wa1, &wa2);
+    println!();
     
     Ok(())
 }
 
 
 
-fn print_adjacent(w1: Vec<char>, w2: Vec<char>)
+fn print_adjacent(w1: &Vec<char>, w2: &Vec<char>)
 {
-    let width = 64;
-    let it1 = w1.chunks(width);
-    let it2 = w1.chunks(width);
+    let width = 50;
+    let separator = '|';
+    let it1 = w1.split(|&c| c=='\n')
+        .map(|line| line.chunks(width)).flatten();
+    let it2 = w2.split(|&c| c=='\n')
+        .map(|line| line.chunks(width)).flatten();
+;
 
     it1.zip(it2)
         .for_each(|(l1, l2)|{
@@ -327,7 +336,7 @@ fn print_adjacent(w1: Vec<char>, w2: Vec<char>)
             {
                 print!(" ");
             }
-            print!("| {}", l2.iter().collect::<String>());
+            print!("{} {}", separator, l2.iter().collect::<String>());
             println!();
         });
     
@@ -346,12 +355,15 @@ fn test_q4() -> io::Result<()>
     let w2 = read_parag("t2.txt")?;
 
     let (wa1, wa2) = best_align_parag(&w1, &w2);
+
+    let lots_of_hashtags = "##################################################".chars().collect::<Vec<char>>();
     
     for i in 0..wa1.len()
     {
-        println!("##################################################");
-        println!("{:?}", wa1[i].iter().collect::<String>());
-        println!("{:?}", wa2[i].iter().collect::<String>());
+        print_adjacent(&lots_of_hashtags, &lots_of_hashtags);
+        //println!("{:?}", wa1[i].iter().collect::<String>());
+        //println!("{:?}", wa2[i].iter().collect::<String>());
+        print_adjacent(&wa1[i], &wa2[i]);
     }
     println!();
     println!();
