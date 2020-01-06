@@ -2,6 +2,7 @@ use std::io::{self, BufReader};
 use std::io::prelude::*;
 use std::fs::File;
 
+const WIDTH: usize = 64;
 
 /// to display the matrixes
 fn print_table(table: &Vec<Vec<usize>>)
@@ -321,18 +322,18 @@ fn test_q3() -> io::Result<()>
 
 fn print_adjacent(w1: &Vec<char>, w2: &Vec<char>)
 {
-    let width = 50;
+//    let width = 50;
     let separator = '|';
     let it1 = w1.split(|&c| c=='\n')
-        .map(|line| line.chunks(width)).flatten();
+        .map(|line| line.chunks(WIDTH)).flatten();
     let it2 = w2.split(|&c| c=='\n')
-        .map(|line| line.chunks(width)).flatten();
-;
+        .map(|line| line.chunks(WIDTH)).flatten();
+
 
     it1.zip(it2)
         .for_each(|(l1, l2)|{
             print!("{} ", l1.iter().collect::<String>());
-            for i in l1.len()..width
+            for _ in l1.len()..WIDTH
             {
                 print!(" ");
             }
