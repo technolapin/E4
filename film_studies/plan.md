@@ -2,23 +2,40 @@
 
 ## Cyberpunk and post-cyberpunk
 
+<<<<<<< HEAD
 ### Cyberpunk:
+=======
+```
+Cyberpunk:
+>>>>>>> d4e988b1e3d2e1c923ee2e727c7048f0d12f663d
 * science is opposed to humanity and controled by the few
 * dystopic
 * paroxysm of individualism
 * the heroes are marginalized and try to find a place out of society
 
+<<<<<<< HEAD
 <img src="matrix.jpg" alt="Bad computa" style="height:800px;"/>
 <img src="bladerunner.jpg" alt="Bad robots" style="height:800px;"/>
 
 
 ### Post-cyberpunk
+=======
+Examples:
+Matrix, Blade runner ...
+```
+```
+ Post-cyberpunk
+>>>>>>> d4e988b1e3d2e1c923ee2e727c7048f0d12f663d
 * science is globaly neutral
 * may be optimistic
 * characters are part of society and they don't want to escape it
 * talks about the social impact of technology
+<<<<<<< HEAD
 
 <img src="exmachina.jpg" alt="Bad robot?" style="height:800px;"/>
+=======
+```
+>>>>>>> d4e988b1e3d2e1c923ee2e727c7048f0d12f663d
 
 
 ## The franchise and universe
@@ -31,8 +48,11 @@
 
 ## The 1995 movie
 
+<<<<<<< HEAD
 <img src="affiche.jpg" alt="The film poster" style="height:800px;"/>
 
+=======
+>>>>>>> d4e988b1e3d2e1c923ee2e727c7048f0d12f663d
 ```
 characters
 
@@ -93,6 +113,7 @@ She also behaves deshumanized.
 * They hack into the ghost of his victims to change their memories
 * The Ghost in itself is then not a proof of origin.
 * She freaks out and go diving
+<<<<<<< HEAD
 
 <img src="birthdive1.png" alt="artificial skin step" style="width:800px;"/><img src="birthdive2.png" alt="The Major emerging from the darknesses of water" style="width:800px;"/>
 
@@ -103,6 +124,13 @@ She also behaves deshumanized.
 #### The artificial ghost
 
 <img src="pupet_master.png" alt="The puppet master being self aware" style="width:800px;"/>
+=======
+* She later have a monologue with Batou
+
+#### The artificial ghost
+
+<img src="pupet_master.png" alt="The puppet master being self*aware" style="width:800px;"/>
+>>>>>>> d4e988b1e3d2e1c923ee2e727c7048f0d12f663d
 
 
 A ghost (the puppet master) is found in the memory of a brainless cyber body.
@@ -114,6 +142,18 @@ She decides she absolutly need to find out by herselve by diving into that body,
 The puppet master propose her to merge, she accepts.
 She's not confined anymore, and she is now sure of what she is: neither a human or a machine.
 
+<<<<<<< HEAD
+=======
+### A Post Cyberpunk Story
+
+This is clearely a post-cyberpunk story.
+
+* materialistic approach
+* optimistic
+* deep introspection, philosophy
+* science & darwinism
+
+>>>>>>> d4e988b1e3d2e1c923ee2e727c7048f0d12f663d
 
 ### The tank Scene, a good summary
 
@@ -132,6 +172,7 @@ Motoko chases after a cyber-body containing the puppet master's artificial ghost
 * The genealogic tree -> natural selection (base of the movie)
 
 
+<<<<<<< HEAD
 ### A Post Cyberpunk Story
 
 This is clearely a post-cyberpunk story.
@@ -142,3 +183,5 @@ This is clearely a post-cyberpunk story.
 * science & darwinism
 
 
+=======
+>>>>>>> d4e988b1e3d2e1c923ee2e727c7048f0d12f663d
