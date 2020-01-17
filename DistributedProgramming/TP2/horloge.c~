@@ -1,0 +1,13 @@
+
+
+typedef struct HorlogeScalaire
+{
+  int val;
+} HorlogeScalaire;
+typedef HorlogeScalaire * pHorlogeScalaire;
+
+void
+update_horloge_scalaire()
+{
+  
+}
