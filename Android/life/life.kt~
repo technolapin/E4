@@ -1,0 +1,14 @@
+enum class State{On, Off}
+
+class Grid
+{
+    Int width
+    Int weight
+    List<State> states
+    
+}
+
+
+fun main(args: Array<String>) {
+    Greeter(args[0]).greet()
+}
